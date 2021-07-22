@@ -1,0 +1,55 @@
+<html
+    window-resizable="true"
+    window-width="600dip"
+    window-height="250dip"
+>
+<head>
+<title>sciter utils demo</title>
+<style>
+
+@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+
+plaintext#logger {
+    size: *;
+}
+
+</style>
+<script type="module">
+
+import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
+
+import {addReloadWindow, centerWindow} from "src/utils.js";
+
+document.on("ready", function() {
+    // initialize logger
+    logger.init("", false);
+
+    // subscribe to logger messages
+    logger.subscribe(function(level, message) {
+        const log = document.$("plaintext#logger");
+
+        log.append(JSX(level, {}, [message]));
+
+        // scroll to last item
+        log.lastElementChild.scrollIntoView({behavior: "smooth"});
+    });
+
+    // attach logger to console
+    logger.attach();
+
+    // capture unhandled exceptions
+    logger.capture();
+
+    // add support for F5 reload
+    addReloadWindow();
+
+    // center window on screen
+    centerWindow();
+});
+
+</script>
+</head>
+<body>
+    <plaintext #logger readonly />
+</body>
+</html>

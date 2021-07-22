@@ -1,0 +1,5 @@
+{
+    "require": {
+        "https://github.com/8ctopus/sciter-logger": "0.3.3"
+    }
+}
