@@ -18,7 +18,7 @@ plaintext#logger {
 
 import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
 
-import {addReloadWindow, centerWindow} from "src/utils.js";
+import * as utils from "src/utils.js";
 
 document.on("ready", function() {
     // initialize logger
@@ -41,10 +41,13 @@ document.on("ready", function() {
     logger.capture();
 
     // add support for F5 reload
-    addReloadWindow();
+    utils.addReloadWindow();
 
     // center window on screen
-    centerWindow();
+    utils.centerWindow();
+
+    // add minimize window shortcut
+    utils.minimizeWindowShortcut();
 });
 
 </script>

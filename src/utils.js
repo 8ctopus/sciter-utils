@@ -4,13 +4,15 @@
  */
 export function addReloadWindow()
 {
-    // add scapp refresh
     document.on("keydown", function(event, element) {
         if (event.code !== "KeyF5")
             return;
 
         // reload app
         Window.this.load(location.href);
+
+        // consume event
+        return true;
     });
 }
 
@@ -43,4 +45,25 @@ export function centerWindow()
 
     // set focus
     document.body.state.focus = true;
+}
+
+/**
+ * Add minimize window shortcut
+ * @return void
+ */
+export function minimizeWindowShortcut()
+{
+    document.on("keyup", function(event, element) {
+        console.log(`code ${event.code} - shift ${event.shiftKey} - ctrl ${event.ctrlKey} - meta ${event.metaKey}`);
+
+        if (!(event.code === "KeyM" && event.metaKey))
+            return;
+
+        console.log("Minimize window...");
+
+        Window.this.state = Window.WINDOW_MINIMIZED;
+
+        // consume event
+        return true;
+    });
 }
