@@ -54,7 +54,7 @@ export function centerWindow()
 export function minimizeWindowShortcut()
 {
     document.on("keyup", function(event, element) {
-        console.log(`code ${event.code} - shift ${event.shiftKey} - ctrl ${event.ctrlKey} - meta ${event.metaKey}`);
+        //console.log(`code ${event.code} - shift ${event.shiftKey} - ctrl ${event.ctrlKey} - meta ${event.metaKey}`);
 
         if (!(event.code === "KeyM" && event.metaKey))
             return;
