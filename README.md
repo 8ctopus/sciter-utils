@@ -2,6 +2,17 @@
 
 Useful functions for [sciter.js](https://sciter.com/).
 
+## functions
+
+- addReloadWindow()
+- screenDimensions()
+- windowDimensions()
+- centerWindow()
+- centerWindowXY(x, y)
+- bringToFrontWindow()
+- focusWindow()
+- minimizeWindowShortcut()
+
 ## demo
 
 - git clone the repository
