@@ -40,11 +40,11 @@ export function centerWindow()
 
 /**
  * Center window around position
- *@param centerX - x center
- *@param centerY - y center
- *@return void
+ * @param int x - x center
+ * @param int y - y center
+ * @return void
  */
-export function centerWindowXY(centerX, centerY)
+export function centerWindowXY(x, y)
 {
     // bring window to front
     Window.this.isTopmost = true;
@@ -56,8 +56,8 @@ export function centerWindowXY(centerX, centerY)
     //console.log(`${wx} ${wy} ${ww} ${wh}`)
 
     // calculate position
-    const left = centerX - ww / 2;
-    const top  = centerY - wh / 2;
+    const left = x - ww / 2;
+    const top  = y - wh / 2;
 
     // move window
     Window.this.move(left, top);
