@@ -31,14 +31,33 @@ export function centerWindow()
 
     //console.log(`${sx} ${sy} ${sw} ${sh}`)
 
+    // calculate screen center
+    const centerX = sx + sw / 2;
+    const centerY = sy + sh / 2;
+
+    centerWindowXY(centerX, centerY);
+}
+
+/**
+ * Center window around position
+ *@param centerX - x center
+ *@param centerY - y center
+ *@return void
+ */
+export function centerWindowXY(centerX, centerY)
+{
+    // bring window to front
+    Window.this.isTopmost = true;
+    Window.this.isTopmost = false;
+
     // get window dimensions with border
     const [wx, wy, ww, wh] = Window.this.box("rectw", "border");
 
     //console.log(`${wx} ${wy} ${ww} ${wh}`)
 
     // calculate position
-    const left = (sw + 1 - ww) / 2;
-    const top  = (sh + 1 - wh) / 2;
+    const left = centerX - ww / 2;
+    const top  = centerY - wh / 2;
 
     // move window
     Window.this.move(left, top);
