@@ -35,12 +35,16 @@ export function screenDimensions()
 
 /**
  * Get window dimensions
+ * @param Window (optional) - if no Window is provided Window.this will be used
  * @return [int, int]
  */
-export function windowDimensions()
+export function windowDimensions(window)
 {
+    if (!window)
+        window = Window.this;
+
     // get window dimensions with border
-    const [wx, wy, ww, wh] = Window.this.box("rectw", "border");
+    const [wx, wy, ww, wh] = window.box("rectw", "border");
 
     console.debug(`window dimensions - ${ww} x ${wh}`);
 
@@ -49,17 +53,25 @@ export function windowDimensions()
 
 /**
  * Center window on screen
+ * @param string reference - "screen" | "parent"
  * @return void
  */
-export function centerWindow()
+export function centerWindow(reference)
 {
-    const [sw, sh] = screenDimensions();
+    let w, h;
+
+    if (reference === "parent" && Window.this.parent)
+        // center on parent window
+        [w, h] = windowDimensions(Window.this.parent);
+    else
+        // center on screen
+        [w, h] = screenDimensions();
 
     // calculate screen center
-    const centerX = sw / 2;
-    const centerY = sh / 2;
+    const centerX = w / 2;
+    const centerY = h / 2;
 
-    console.debug(`screen center - ${centerX} x ${centerY}`);
+    console.debug(`window center - ${centerX} x ${centerY}`);
 
     centerWindowXY(centerX, centerY);
 }
