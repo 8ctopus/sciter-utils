@@ -16,13 +16,16 @@ Useful functions for [sciter.js](https://sciter.com/).
 - add to `<script type="module">`
 
 ```js
-import {addReloadWindow, centerWindow} from "src/utils.js";
+import * as utils from "src/utils.js";
 
 document.on("ready", function() {
     // add support for F5 reload
-    addReloadWindow();
+    utils.addReloadWindow();
 
     // center window on screen
-    centerWindow();
+    utils.centerWindow();
+
+    // center window around position
+    utils.centerWindowXY(100, 100);
 });
 ```

@@ -17,23 +17,49 @@ export function addReloadWindow()
 }
 
 /**
+ * Get screen dimensions
+ * @return [int, int]
+ */
+export function screenDimensions()
+{
+    // get screen dimensions
+    let [sx, sy, sw, sh] = Window.this.screenBox("frame");
+
+    sw += 1;
+    sh += 1;
+
+    console.debug(`screen dimensions - ${sw} x ${sh}`);
+
+    return [sw, sh];
+}
+
+/**
+ * Get window dimensions
+ * @return [int, int]
+ */
+export function windowDimensions()
+{
+    // get window dimensions with border
+    const [wx, wy, ww, wh] = Window.this.box("rectw", "border");
+
+    console.debug(`window dimensions - ${ww} x ${wh}`);
+
+    return [ww, wh];
+}
+
+/**
  * Center window on screen
  * @return void
  */
 export function centerWindow()
 {
-    // bring window to front
-    Window.this.isTopmost = true;
-    Window.this.isTopmost = false;
-
-    // get screen dimensions
-    const [sx, sy, sw, sh] = Window.this.screenBox("frame");
-
-    //console.log(`${sx} ${sy} ${sw} ${sh}`)
+    const [sw, sh] = screenDimensions();
 
     // calculate screen center
-    const centerX = sx + sw / 2;
-    const centerY = sy + sh / 2;
+    const centerX = sw / 2;
+    const centerY = sh / 2;
+
+    console.debug(`screen center - ${centerX} x ${centerY}`);
 
     centerWindowXY(centerX, centerY);
 }
@@ -46,22 +72,35 @@ export function centerWindow()
  */
 export function centerWindowXY(x, y)
 {
-    // bring window to front
-    Window.this.isTopmost = true;
-    Window.this.isTopmost = false;
-
-    // get window dimensions with border
-    const [wx, wy, ww, wh] = Window.this.box("rectw", "border");
-
-    //console.log(`${wx} ${wy} ${ww} ${wh}`)
+    const [ww, wh] = windowDimensions();
 
     // calculate position
     const left = x - ww / 2;
     const top  = y - wh / 2;
 
+    console.debug(`position - ${left} x ${top}`);
+
     // move window
     Window.this.move(left, top);
+}
 
+/**
+ * Bring window to front
+ * @return void
+ */
+export function bringToFrontWindow()
+{
+    // bring window to front
+    Window.this.isTopmost = true;
+    Window.this.isTopmost = false;
+}
+
+/**
+ * Focus window
+ * @return void
+ */
+export function focusWindow()
+{
     // set focus
     document.body.state.focus = true;
 }
