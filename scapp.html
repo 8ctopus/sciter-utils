@@ -47,10 +47,17 @@ document.on("ready", function() {
     utils.centerWindow("screen");
 
     // center window around position
-    //utils.centerWindowXY(400, 300);
+    utils.centerWindowXY(null, 1200, 600);
 
     // add minimize window shortcut
     utils.minimizeWindowShortcut();
+
+    var wnd = new Window({
+        parent: Window.this,
+        url   : __DIR__ + "window.html",
+        state : Window.WINDOW_SHOWN,
+        alignment: 1,
+    });
 });
 
 </script>
