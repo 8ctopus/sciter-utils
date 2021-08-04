@@ -167,3 +167,22 @@ export function minimizeWindowShortcut()
         return true;
     });
 }
+
+/**
+ * Close window on escape
+ * @param Window window - window handle or if null Window.this
+ * @return {[type]}
+ */
+export function closeWindowOnEscape(window)
+{
+    if (!window)
+        window = Window.this;
+
+    document.on("keyup", function(event, element) {
+        // escape key press
+        if (event.code !== "KeyESCAPE")
+            return;
+
+        window.close();
+    });
+}
