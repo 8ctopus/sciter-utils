@@ -71,11 +71,16 @@ document.on("ready", function() {
 
     // close window on escape
     utils.closeWindowOnEscape(window);
+
+    document.on("click", "button", function(event, element) {
+        utils.openLink(element.attributes["href"]);
+    })
 });
 
 </script>
 </head>
 <body>
+    <button href="https://duckduckgo.com">search</button>
     <plaintext #logger readonly />
 </body>
 </html>

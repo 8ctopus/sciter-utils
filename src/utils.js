@@ -1,3 +1,5 @@
+import * as env from '@env';
+
 /**
  * Add window reload with F5
  * @return void
@@ -226,4 +228,17 @@ export function addKeyboardShortcut(element, shortcut, func)
     });
 
     return true;
+}
+
+/**
+ * Open link in browser
+ * @param  string url
+ * @return void
+ */
+export function openLink(url)
+{
+    console.log(`GUI - Open link in browser - ${url}`);
+
+    // open url in default browser
+    env.launch(url);
 }

@@ -16,6 +16,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - closeWindowOnEscape(window) : void
 - keyStr(Event) : string
 - addKeyboardShortcut(DOMElement, shortcut, function) : bool
+- openLink(string) : void
 
 ## demo
 
