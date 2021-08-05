@@ -144,6 +144,28 @@ export function keyStr(event)
 }
 
 /**
+ * Log keyboard keys
+ * @param DOMElement element
+ * @param function func to call
+ * @return bool
+ */
+export function keyLogger(element, func)
+{
+    if (element === undefined || typeof func !== "function")
+        return false;
+
+    element.on("keyup", function(event) {
+        // call function
+        let result = func(event);
+
+        if (result !== undefined)
+            return result;
+    });
+
+    return true;
+}
+
+/**
  * Add keyboard shortcut
  * @param DOMElement element
  * @param object shortcut

@@ -12,6 +12,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - bringToFrontWindow(window) : void
 - focusWindow() : void
 
+- keyLogger(DOMElement, function) : bool
 - addKeyboardShortcut(DOMElement, shortcut, function) : bool
 - keyStr(Event) : string
 

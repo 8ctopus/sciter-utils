@@ -51,6 +51,9 @@ document.on("ready", function() {
     // center window around position
     utils.centerWindowXY(null, 1200, 600);
 
+    // bring window to front
+    utils.windowToFront();
+
     // add minimize window shortcut
     utils.minimizeWindowShortcut();
 
@@ -60,6 +63,7 @@ document.on("ready", function() {
         ctrlKey: true,
     }, function(event) {
         console.log(utils.keyStr(event) + " pressed");
+        return false;
     })
 
     const window = new Window({
@@ -71,6 +75,12 @@ document.on("ready", function() {
 
     // close window on escape
     utils.closeWindowOnEscape(window);
+
+    // add key logger
+    utils.keyLogger(document, function(event) {
+        console.log(utils.keyStr(event) + " pressed");
+        return false;
+    });
 
     document.on("click", "button", function(event, element) {
         utils.openLink(element.attributes["href"]);
