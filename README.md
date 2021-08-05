@@ -4,7 +4,6 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ## functions
 
-- addReloadWindow() : void
 - screenDimensions() : [width, height]
 - windowRect(window) : [left, top, width, height]
 - windowDimensions(window) : [width, height]
@@ -12,10 +11,14 @@ Useful functions for [sciter.js](https://sciter.com/).
 - centerWindowXY(window, x, y) : void
 - bringToFrontWindow(window) : void
 - focusWindow() : void
+
+- addKeyboardShortcut(DOMElement, shortcut, function) : bool
+- keyStr(Event) : string
+
+- addReloadWindow() : void
 - minimizeWindowShortcut() : void
 - closeWindowOnEscape(window) : void
-- keyStr(Event) : string
-- addKeyboardShortcut(DOMElement, shortcut, function) : bool
+
 - openLink(string) : void
 
 ## demo
