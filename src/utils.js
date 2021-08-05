@@ -1,24 +1,6 @@
 import * as env from '@env';
 
 /**
- * Add window reload with F5
- * @return void
- */
-export function addReloadWindow()
-{
-    document.on("keydown", function(event, element) {
-        if (event.code !== "KeyF5")
-            return;
-
-        // reload app
-        Window.this.load(location.href);
-
-        // consume event
-        return true;
-    });
-}
-
-/**
  * Get screen dimensions
  * @return [int, int]
  */
@@ -150,44 +132,6 @@ export function focusWindow()
 }
 
 /**
- * Add minimize window shortcut
- * @return void
- */
-export function minimizeWindowShortcut()
-{
-    document.on("keyup", function(event, element) {
-        //console.log(`code ${event.code} - shift ${event.shiftKey} - ctrl ${event.ctrlKey} - meta ${event.metaKey}`);
-
-        if (!(event.code === "KeyM" && event.metaKey))
-            return;
-
-        console.log("Minimize window...");
-
-        Window.this.state = Window.WINDOW_MINIMIZED;
-
-        // consume event
-        return true;
-    });
-}
-
-/**
- * Close window on escape
- * @param Window window - window handle or if null Window.this
- * @return {[type]}
- */
-export function closeWindowOnEscape(window)
-{
-    if (!window)
-        window = Window.this;
-
-    addKeyboardShortcut(window.document, {
-        key: "KeyESCAPE",
-    }, function() {
-        window.close();
-    })
-}
-
-/**
  * Get event key as string
  * @param Event event
  * @return string
@@ -222,12 +166,69 @@ export function addKeyboardShortcut(element, shortcut, func)
         // compare key
         if (event.code === shortcut.key &&
                 // compare modifiers
-                event.ctrlKey === shortcut.ctrlKey && event.shiftKey === shortcut.shiftKey && event.altKey === shortcut.altKey)
+                event.ctrlKey === shortcut.ctrlKey && event.shiftKey === shortcut.shiftKey && event.altKey === shortcut.altKey) {
             // call function
-            func(event);
+            let result = func(event);
+
+            if (result !== undefined)
+                return result;
+        }
     });
 
     return true;
+}
+
+/**
+ * Add window reload with F5
+ * @return void
+ */
+export function addReloadWindow()
+{
+    addKeyboardShortcut(window.document, {
+        key: "KeyF5",
+    }, function() {
+        // reload app
+        Window.this.load(location.href);
+
+        // consume event
+        return true;
+    });
+}
+
+/**
+ * Add minimize window shortcut
+ * @return void
+ */
+export function minimizeWindowShortcut()
+{
+    addKeyboardShortcut(window.document, {
+        key: "KeyM",
+        metaKey: true;
+    }, function() {
+        console.log("Minimize window...");
+
+        Window.this.state = Window.WINDOW_MINIMIZED;
+
+        // consume event
+        return true;
+    });
+}
+
+/**
+ * Close window on escape
+ * @param Window window - window handle or if null Window.this
+ * @return void
+ */
+export function closeWindowOnEscape(window)
+{
+    if (!window)
+        window = Window.this;
+
+    addKeyboardShortcut(window.document, {
+        key: "KeyESCAPE",
+    }, function() {
+        window.close();
+    })
 }
 
 /**
