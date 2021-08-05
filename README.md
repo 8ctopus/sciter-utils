@@ -14,6 +14,8 @@ Useful functions for [sciter.js](https://sciter.com/).
 - focusWindow() : void
 - minimizeWindowShortcut() : void
 - closeWindowOnEscape(window) : void
+- keyStr(Event) : string
+- addKeyboardShortcut(DOMElement, shortcut, function) : bool
 
 ## demo
 

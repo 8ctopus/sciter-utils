@@ -28,7 +28,7 @@ export function screenDimensions()
     sw += 1;
     sh += 1;
 
-    console.debug(`screen dimensions ${sw} x ${sh}`);
+    //console.debug(`screen dimensions ${sw} x ${sh}`);
 
     return [sw, sh];
 }
@@ -46,7 +46,7 @@ export function windowRect(window)
     // get window dimensions with border
     const [wx, wy, ww, wh] = window.box("rectw", "border", "screen");
 
-    console.debug(`window rect - (${wx} x ${wy}) ${ww} x ${wh}`);
+    //console.debug(`window rect - (${wx} x ${wy}) ${ww} x ${wh}`);
 
     return [wx, wy, ww, wh];
 }
@@ -74,7 +74,7 @@ export function centerWindow(reference)
     let centerX, centerY;
 
     if (reference === "parent" && Window.this.parent) {
-        console.debug("center window on parent");
+        //console.debug("center window on parent");
 
         // get parent window rectangle
         const [px, py, pw, ph] = windowRect(Window.this.parent);
@@ -83,7 +83,7 @@ export function centerWindow(reference)
         centerY = py + ph / 2;
     }
     else {
-        console.debug("center window on screen");
+        //console.debug("center window on screen");
 
         // get screen dimensions
         const [sw, sh] = screenDimensions();
@@ -93,7 +93,7 @@ export function centerWindow(reference)
         centerY = sh / 2;
     }
 
-    console.debug(`center (${centerX}, ${centerY})`);
+    //console.debug(`center (${centerX}, ${centerY})`);
 
     centerWindowXY(Window.this, centerX, centerY);
 }
@@ -178,11 +178,52 @@ export function closeWindowOnEscape(window)
     if (!window)
         window = Window.this;
 
-    document.on("keyup", function(event, element) {
-        // escape key press
-        if (event.code !== "KeyESCAPE")
-            return;
-
+    addKeyboardShortcut(window.document, {
+        key: "KeyESCAPE",
+    }, function() {
         window.close();
+    })
+}
+
+/**
+ * Get event key as string
+ * @param Event event
+ * @return string
+ */
+export function keyStr(event)
+{
+    const code = event.code.replace("Key", "");
+
+    return `${event.metaKey ? "meta": ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift": ""} ${code}`;
+}
+
+/**
+ * Add keyboard shortcut
+ * @param DOMElement element
+ * @param object shortcut
+ * @param function func to call
+ * @return bool
+ */
+export function addKeyboardShortcut(element, shortcut, func)
+{
+    if (element === undefined || shortcut === undefined || shortcut.key === undefined || typeof func !== "function")
+        return false;
+
+    shortcut.ctrlKey  = shortcut.ctrlKey ?? false;
+    shortcut.shiftKey = shortcut.shiftKey ?? false;
+    shortcut.altKey   = shortcut.altKey ?? false;
+    shortcut.metaKey  = shortcut.metaKey ?? false;
+
+    element.on("keyup", function(event) {
+        //console.debug("keyup - " + keyStr(event));
+
+        // compare key
+        if (event.code === shortcut.key &&
+                // compare modifiers
+                event.ctrlKey === shortcut.ctrlKey && event.shiftKey === shortcut.shiftKey && event.altKey === shortcut.altKey)
+            // call function
+            func(event);
     });
+
+    return true;
 }

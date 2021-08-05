@@ -54,12 +54,23 @@ document.on("ready", function() {
     // add minimize window shortcut
     utils.minimizeWindowShortcut();
 
-    var wnd = new Window({
+    // add keyboard shortcut
+    utils.addKeyboardShortcut(document, {
+        key: "KeyM",
+        ctrlKey: true,
+    }, function(event) {
+        console.log(utils.keyStr(event) + " pressed");
+    })
+
+    const window = new Window({
         parent: Window.this,
         url   : __DIR__ + "window.html",
         state : Window.WINDOW_SHOWN,
         alignment: 1,
     });
+
+    // close window on escape
+    utils.closeWindowOnEscape(window);
 });
 
 </script>
