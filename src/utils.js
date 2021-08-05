@@ -203,7 +203,7 @@ export function minimizeWindowShortcut()
 {
     addKeyboardShortcut(window.document, {
         key: "KeyM",
-        metaKey: true;
+        metaKey: true,
     }, function() {
         console.log("Minimize window...");
 
