@@ -11,6 +11,9 @@ console = Window.this.parent.document.globalThis.console;
 document.on("ready", function() {
     // center window on parent
     utils.centerWindow("parent");
+
+    // close window on escape key press
+    utils.closeWindowOnEscape();
 });
 
 </script>

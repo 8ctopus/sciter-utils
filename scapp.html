@@ -74,19 +74,18 @@ document.on("ready", function() {
         alignment: 1,
     });
 
-    // close window on escape
-    utils.closeWindowOnEscape(window);
-
     // add key logger
     utils.keyLogger(document, function(event) {
         console.log(utils.keyStr(event) + " pressed");
         return false;
     });
 
-    document.on("click", "button", function(event, element) {
-        utils.openLink(element.attributes["href"]);
-    })
+    console.debug(utils.sciterInfo());
 });
+
+document.on("click", "button", function(event, element) {
+    utils.openLink(element.attributes["href"]);
+})
 
 </script>
 </head>
