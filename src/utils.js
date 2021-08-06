@@ -1,4 +1,5 @@
-import * as env from '@env';
+import * as env from "@env";
+import * as sciter from "@sciter";
 
 /**
  * Get screen dimensions
@@ -264,4 +265,13 @@ export function openLink(url)
 
     // open url in default browser
     env.launch(url);
+}
+
+/**
+ * Get sciter info
+ * @return string
+ */
+export function sciterInfo()
+{
+    return `sciter v${sciter.VERSION} r${sciter.REVISION} quick.js v${sciter.QUICKJS_VERSION}`;
 }

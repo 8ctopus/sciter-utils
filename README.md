@@ -22,6 +22,8 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 - openLink(string) : void
 
+- sciterInfo() : string
+
 ## demo
 
 - git clone the repository
