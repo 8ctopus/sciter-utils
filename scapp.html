@@ -40,6 +40,9 @@ document.on("ready", function() {
     // capture unhandled exceptions
     logger.capture();
 
+    // log sciter version
+    console.debug(utils.sciterInfo());
+
     // add support for F5 reload
     utils.addReloadWindow();
 
@@ -79,8 +82,6 @@ document.on("ready", function() {
         console.log(utils.keyStr(event) + " pressed");
         return false;
     });
-
-    console.debug(utils.sciterInfo());
 });
 
 document.on("click", "button", function(event, element) {
