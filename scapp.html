@@ -83,12 +83,14 @@ document.on("ready", function() {
         return false;
     });
 
-    console.log(`screen pixels in 1 inch - ${utils.screenPixels("1in")}`);
-    console.log(`screen pixels in 1 cm - ${utils.screenPixels("1cm")}`);
-    console.log(`screen pixels in 1 mm - ${utils.screenPixels("1mm")}`);
+    console.line();
+    console.log(`device DPI = pixels in 1 inch - ${utils.devicePixels()}`);
+    console.log(`device pixels in 1 cm - ${utils.devicePixels("1cm")}`);
+    console.log(`device pixels in 1 mm - ${utils.devicePixels("1mm")}`);
 
-    console.log(`96dip in ppx - ${utils.dip_ppx("96dip")}`);
-    console.log(`96ppx in dip - ${utils.dip_ppx("96ppx")}`);
+    console.line();
+    console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${utils.dip_ppx("96dip", 142)}`);
+    console.log(`what is 142ppx in dip on a 142 DPI screen? - ${utils.dip_ppx("142ppx", 142)}`);
 });
 
 document.on("click", "button", function(event, element) {

@@ -2,22 +2,26 @@ import * as env from "@env";
 import * as sciter from "@sciter";
 
 /**
- * Convert measure in screen pixels (ppx)
- * @param string measure
+ * Convert measure in device pixels (ppx)
+ * @param string(optional) measure
  * @return int
  */
-export function screenPixels(measure)
+export function devicePixels(measure)
 {
+    if (typeof measure === "undefined")
+        measure = "1in";
+
     return sciter.devicePixels(measure);
 }
 
 /**
  * Convert dip to ppx and ppx to dip
  * @param string measure
+ * @param int dpi resolution
  * @return int
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
-export function dip_ppx(measure)
+export function dip_ppx(measure, dpi)
 {
     // extract value and unit
     const [,value, unit] = measure.match(/(\d+)(\w+)/);
@@ -28,9 +32,6 @@ export function dip_ppx(measure)
     // check types
     if (typeof length !== "number" || typeof unit !== "string")
         return -1;
-
-    // get screen DPI
-    const dpi = sciter.devicePixels("1in");
 
     // convert
     switch (unit) {
