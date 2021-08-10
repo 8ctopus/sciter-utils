@@ -2,7 +2,7 @@ import * as env from "@env";
 import * as sciter from "@sciter";
 
 /**
- * Get screen pixels (ppx) equivalent
+ * Convert measure in screen pixels (ppx)
  * @param string measure
  * @return int
  */
