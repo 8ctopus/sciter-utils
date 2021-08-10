@@ -2,6 +2,16 @@ import * as env from "@env";
 import * as sciter from "@sciter";
 
 /**
+ * Get screen pixels (ppx) equivalent
+ * @param string measure
+ * @return int
+ */
+export function screenPixels(measure)
+{
+    return sciter.devicePixels(measure);
+}
+
+/**
  * Get screen dimensions
  * @return [int, int]
  */

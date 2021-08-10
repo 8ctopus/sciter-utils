@@ -4,9 +4,10 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ## functions
 
-- screenDimensions() : [width, height]
-- windowRect(window) : [left, top, width, height]
-- windowDimensions(window) : [width, height]
+- screenPixels(string) : int
+- screenDimensions() : int [width, height]
+- windowRect(window) : int [left, top, width, height]
+- windowDimensions(window) : int [width, height]
 - centerWindow(reference) : void
 - centerWindowXY(window, x, y) : void
 - bringToFrontWindow(window) : void

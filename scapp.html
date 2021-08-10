@@ -82,6 +82,10 @@ document.on("ready", function() {
         console.log(utils.keyStr(event) + " pressed");
         return false;
     });
+
+    console.log(`screen pixels in 1 inch - ${utils.screenPixels("1in")}`);
+    console.log(`screen pixels in 1 cm - ${utils.screenPixels("1cm")}`);
+    console.log(`screen pixels in 1 mm - ${utils.screenPixels("1mm")}`);
 });
 
 document.on("click", "button", function(event, element) {
