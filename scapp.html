@@ -91,6 +91,10 @@ document.on("ready", function() {
     console.line();
     console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${utils.dip_ppx("96dip", 142)}`);
     console.log(`what is 142ppx in dip on a 142 DPI screen? - ${utils.dip_ppx("142ppx", 142)}`);
+
+    console.line();
+    console.log(`screens count - ${Window.screens}`);
+    console.log(`Window is on screen - ${Window.this.screen}`);
 });
 
 document.on("click", "button", function(event, element) {
