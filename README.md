@@ -5,6 +5,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 ## functions
 
 - screenPixels(string) : int
+- dip_ppx(string) : int
 - screenDimensions() : int [width, height]
 - windowRect(window) : int [left, top, width, height]
 - windowDimensions(window) : int [width, height]

@@ -12,6 +12,40 @@ export function screenPixels(measure)
 }
 
 /**
+ * Convert dip to ppx and ppx to dip
+ * @param string measure
+ * @return int
+ * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
+ */
+export function dip_ppx(measure)
+{
+    // extract value and unit
+    const [,value, unit] = measure.match(/(\d+)(\w+)/);
+
+    // convert value to number
+    const length = parseInt(value);
+
+    // check types
+    if (typeof length !== "number" || typeof unit !== "string")
+        return -1;
+
+    // get screen DPI
+    const dpi = sciter.devicePixels("1in");
+
+    // convert
+    switch (unit) {
+        case "dip":
+            return length * dpi / 96;
+
+        case "ppx":
+            return length * 96 / dpi;
+
+        default:
+            return -1;
+    }
+}
+
+/**
  * Get screen dimensions
  * @return [int, int]
  */

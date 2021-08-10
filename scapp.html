@@ -86,6 +86,9 @@ document.on("ready", function() {
     console.log(`screen pixels in 1 inch - ${utils.screenPixels("1in")}`);
     console.log(`screen pixels in 1 cm - ${utils.screenPixels("1cm")}`);
     console.log(`screen pixels in 1 mm - ${utils.screenPixels("1mm")}`);
+
+    console.log(`96dip in ppx - ${utils.dip_ppx("96dip")}`);
+    console.log(`96ppx in dip - ${utils.dip_ppx("96ppx")}`);
 });
 
 document.on("click", "button", function(event, element) {
