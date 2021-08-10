@@ -15,10 +15,10 @@ export function devicePixels(measure)
 }
 
 /**
- * Convert dip to ppx and ppx to dip
+ * Convert dip to ppx
  * @param string measure
  * @param int dpi resolution
- * @return int
+ * @return float value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
 export function dip_ppx(measure, dpi)
@@ -30,20 +30,56 @@ export function dip_ppx(measure, dpi)
     const length = parseInt(value);
 
     // check types
-    if (typeof length !== "number" || typeof unit !== "string")
+    if (typeof length !== "number" || unit !== "dip")
         return -1;
 
-    // convert
-    switch (unit) {
-        case "dip":
-            return length * dpi / 96;
+    return length * dpi / 96;
+}
 
-        case "ppx":
-            return length * 96 / dpi;
+/**
+ * Convert ppx to dip
+ * @param string measure
+ * @param int dpi resolution
+ * @return float value or false on failure
+ * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
+ */
+export function ppx_dip(measure, dpi)
+{
+    // extract value and unit
+    const [,value, unit] = measure.match(/(\d+)(\w+)/);
 
-        default:
-            return -1;
-    }
+    // convert value to number
+    const length = parseInt(value);
+
+    // check types
+    if (typeof length !== "number" || unit !== "ppx")
+        return false;
+
+    return length * 96 / dpi;
+}
+
+/**
+ * Convert millimeters to ppx
+ * @param string measure
+ * @param int dpi resolution
+ * @return float value or false on failure
+ */
+export function mm_ppx(measure, dpi)
+{
+    // extract value and unit
+    const [,value, unit] = measure.match(/([.\d]+)(\w+)/);
+
+    // convert value to number
+    const length = parseFloat(value);
+
+    // check types
+    if (typeof length !== "number" || unit !== "mm")
+        return false;
+
+    // 1 inch = 25.4mm = 96dip
+    const dip = length * 96 / 25.4;
+
+    return dip * dpi / 96;
 }
 
 /**
