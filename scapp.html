@@ -22,17 +22,10 @@ import * as utils from "src/utils.js";
 
 document.on("ready", function() {
     // initialize logger
-    logger.init("", false);
+    logger.init();
 
     // subscribe to logger messages
-    logger.subscribe(function(level, message) {
-        const log = document.$("plaintext#logger");
-
-        log.append(JSX(level, {}, [message]));
-
-        // scroll to last item
-        log.lastElementChild.scrollIntoView({behavior: "smooth"});
-    });
+    logger.plaintext(document.$("plaintext#logger"));
 
     // attach logger to console
     logger.attach();
