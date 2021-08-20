@@ -5,12 +5,14 @@ Useful functions for [sciter.js](https://sciter.com/).
 ## functions
 
 ### dpi
+
 - devicePixels(string) : int
 - dip_ppx(string) : float
 - ppx_dip(string) : float
 - mm_ppx(string) : float
 
 ### screen and window
+
 - screenDimensions() : int [width, height]
 - windowRect(window) : int [left, top, width, height]
 - windowDimensions(window) : int [width, height]
@@ -20,11 +22,13 @@ Useful functions for [sciter.js](https://sciter.com/).
 - focusWindow() : void
 
 ### keyboard
+
 - keyLogger(DOMElement, function) : bool
 - addKeyboardShortcut(DOMElement, shortcut, function) : bool
 - keyStr(Event) : string
 
 ### misc.
+
 - sleep(ms) : void
 - addReloadWindow() : void
 - minimizeWindowShortcut() : void
