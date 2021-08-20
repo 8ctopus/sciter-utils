@@ -76,6 +76,7 @@ document.on("ready", function() {
         return false;
     });
 
+    // dpi stuff
     console.line();
     console.log(`device DPI = pixels in 1 inch - ${utils.devicePixels()}`);
     console.log(`device pixels in 1 cm - ${utils.devicePixels("1cm")}`);
@@ -87,8 +88,15 @@ document.on("ready", function() {
     console.log(`what is 10cm in ppx on a 142 DPI screen? - ${utils.mm_ppx("100mm", 142)}`);
 
     console.line();
+    // test screens
     console.log(`screens count - ${Window.screens}`);
-    console.log(`Window is on screen - ${Window.this.screen}`);
+    console.log(`window is on screen - ${Window.this.screen}`);
+
+    console.line();
+    // test sleep function
+    console.log(new Date());
+    utils.sleep(2000);
+    console.log(new Date());
 });
 
 document.on("click", "button", function(event, element) {

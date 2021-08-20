@@ -356,3 +356,16 @@ export function sciterInfo()
 {
     return `sciter v${sciter.VERSION} r${sciter.REVISION} quick.js v${sciter.QUICKJS_VERSION}`;
 }
+
+/**
+ * Sleep function
+ * @param int delay in milliseconds
+ * @return void
+ * @note blocks code execution until completion, see https://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript
+ */
+export function sleep(delay)
+{
+    const start = new Date().getTime();
+
+    while (new Date().getTime() < start + delay);
+}
