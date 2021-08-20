@@ -25,6 +25,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - keyStr(Event) : string
 
 ### misc.
+- sleep(ms) : void
 - addReloadWindow() : void
 - minimizeWindowShortcut() : void
 - closeWindowOnEscape(window) : void
