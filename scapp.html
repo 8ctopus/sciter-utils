@@ -88,6 +88,7 @@ document.on("ready", function() {
     console.log(`what is 10cm in ppx on a 142 DPI screen? - ${utils.mm_ppx("100mm", 142)}`);
 
     console.line();
+    console.log(`monitors count - ${utils.monitorsCount()}`);
     utils.logMonitors();
     console.log(`window is on monitor - ${Window.this.screen + 1}`);
 

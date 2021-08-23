@@ -83,12 +83,21 @@ export function mm_ppx(measure, dpi)
 }
 
 /**
- * Log monitors
+ * Get monitors count
+ * @return int
+ */
+export function monitorsCount()
+{
+    return Window.screens;
+}
+
+/**
+ * Log monitors info
  * @return void
  */
 export function logMonitors()
 {
-    const screens = Window.screens;
+    const screens = monitorsCount();
 
     for (let i=0; i < screens; ++i) {
         const [w, h]  = Window.screenBox(i, "frame", "dimension");
