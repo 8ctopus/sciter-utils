@@ -83,20 +83,35 @@ export function mm_ppx(measure, dpi)
 }
 
 /**
+ * Log monitors
+ * @return void
+ */
+export function logMonitors()
+{
+    const screens = Window.screens;
+
+    for (let i=0; i < screens; ++i) {
+        const [w, h]  = Window.screenBox(i, "frame", "dimension");
+        const primary = Window.screenBox(i, "isPrimary");
+        const device  = Window.screenBox(i, "device");
+        const ratio   = Window.screenBox(i, "devicePixelRatio");
+
+        console.log(`monitor ${i + 1} - ${w} x ${h} - ${primary ? "primary" : "secondary"} - ${device} - ${ratio}`);
+    }
+}
+
+/**
  * Get screen dimensions
  * @return [int, int]
  */
 export function screenDimensions()
 {
     // get screen dimensions
-    let [sx, sy, sw, sh] = Window.this.screenBox("frame");
+    const [w, h] = Window.this.screenBox("frame", "dimension");
 
-    sw += 1;
-    sh += 1;
+    //console.debug(`screen dimensions ${w} x ${h}`);
 
-    //console.debug(`screen dimensions ${sw} x ${sh}`);
-
-    return [sw, sh];
+    return [w, h];
 }
 
 /**

@@ -1,7 +1,7 @@
 <html
     window-resizable="true"
     window-width="600dip"
-    window-height="250dip"
+    window-height="400dip"
 >
 <head>
 <title>sciter utils demo</title>
@@ -88,9 +88,8 @@ document.on("ready", function() {
     console.log(`what is 10cm in ppx on a 142 DPI screen? - ${utils.mm_ppx("100mm", 142)}`);
 
     console.line();
-    // test screens
-    console.log(`screens count - ${Window.screens}`);
-    console.log(`window is on screen - ${Window.this.screen}`);
+    utils.logMonitors();
+    console.log(`window is on monitor - ${Window.this.screen + 1}`);
 
     console.line();
     // test sleep function
