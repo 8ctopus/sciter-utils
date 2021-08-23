@@ -13,6 +13,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ### screen and window
 
+- logMonitors() : void
 - screenDimensions() : int [width, height]
 - windowRect(window) : int [left, top, width, height]
 - windowDimensions(window) : int [width, height]
