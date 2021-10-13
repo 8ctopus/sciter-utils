@@ -1,8 +1,4 @@
-/inspector.exe
-/scapp.exe
-/sciter.dll
-/spm.phar
-/spm
+/bin/
 
 /*.sublime-workspace
 
