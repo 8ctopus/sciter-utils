@@ -95,10 +95,10 @@ document.on("ready", function() {
     console.line();
 
     // test sleep function
-    console.log(new Date());
+    console.log("Sleep for 500ms");
     utils.sleep(500);
-    console.log(new Date());
 
+    // play sound
     let file = "C:\\Windows\\Media\\notify.wav";
 
     const promise = utils.play(file);
