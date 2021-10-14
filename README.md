@@ -40,6 +40,8 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 - sciterInfo() : string
 
+- play(string) : Promise
+
 ## demo
 
 - git clone the repository

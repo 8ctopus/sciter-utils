@@ -393,3 +393,15 @@ export function sleep(delay)
 
     while (new Date().getTime() < start + delay);
 }
+
+/**
+ * Play sound
+ * @param  string file
+ * @return Promise
+ */
+export async function play(file)
+{
+    // try catch not needed because of the promise
+    const audio = await Audio.load(file);
+    await audio.play();
+}

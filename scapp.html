@@ -93,10 +93,23 @@ document.on("ready", function() {
     console.log(`window is on monitor - ${Window.this.screen + 1}`);
 
     console.line();
+
     // test sleep function
     console.log(new Date());
-    utils.sleep(2000);
+    utils.sleep(500);
     console.log(new Date());
+
+    let file = "C:\\Windows\\Media\\notify.wav";
+
+    const promise = utils.play(file);
+
+    promise.then(
+        function(success) {
+            console.note("Play sound - OK");
+        },
+        function(error) {
+            console.error("Play sound - FAILED");
+        });
 });
 
 document.on("click", "button", function(event, element) {
