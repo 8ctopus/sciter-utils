@@ -9,7 +9,7 @@ curl -LO https://github.com/c-smile/sciter-js-sdk/raw/b5c4d4efe4ed48fc96c7900c8e
 
 cd ..
 
-REM sciter package manager 0.2.0
-curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.0/spm.phar
+REM sciter package manager 0.2.1
+curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.1/spm.phar
 
 pause
