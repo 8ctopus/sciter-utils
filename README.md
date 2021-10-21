@@ -18,6 +18,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - screenDimensions() : int [width, height]
 - windowRect(window) : int [left, top, width, height]
 - windowDimensions(window) : int [width, height]
+- setWindowDimensions(window, [int: width, int: height]) : bool
 - centerWindow(reference) : void
 - centerWindowXY(window, x, y) : void
 - bringToFrontWindow(window) : void
