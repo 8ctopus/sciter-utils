@@ -126,7 +126,7 @@ export function screenDimensions()
 /**
  * Get window rectangle
  * @param Window (optional) - if no Window is provided Window.this will be used
- * @return [int, int, int, int]
+ * @return Array [left, top, width, height]
  */
 export function windowRect(window)
 {
@@ -152,6 +152,22 @@ export function windowDimensions(window)
     const [wx, wy, ww, wh] = windowRect(window);
 
     return [ww, wh];
+}
+
+/**
+ * Set window dimensions
+ * @param Window window
+ * @param array dimensions
+ * @return bool
+ */
+export function setWindowDimensions(window, dimensions)
+{
+    if (!Array.isArray(dimensions) || window.constructor.name !== "Window")
+        return false;
+
+    const rect = windowRect(window);
+
+    Window.this.move(rect[0], rect[1], dimensions[0], dimensions[1]);
 }
 
 /**

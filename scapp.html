@@ -9,6 +9,10 @@
 
 @import url(vendor/8ctopus/sciter-logger/src/logger.css);
 
+body {
+    border-spacing: 1em;
+}
+
 plaintext#logger {
     size: *;
 }
@@ -112,14 +116,19 @@ document.on("ready", function() {
         });
 });
 
-document.on("click", "button", function(event, element) {
+document.on("click", "button#link", function(event, element) {
     utils.openLink(element.attributes["href"]);
-})
+});
+
+document.on("click", "button#resize", function(event, element) {
+    utils.setWindowDimensions(Window.this, [500, 200]);
+});
 
 </script>
 </head>
 <body>
-    <button href="https://duckduckgo.com">search</button>
+    <button href="https://duckduckgo.com" #link>search</button>
+    <button #resize>resize window</button>
     <plaintext #logger readonly />
 </body>
 </html>
