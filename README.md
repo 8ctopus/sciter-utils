@@ -6,42 +6,42 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ### dpi
 
-- devicePixels(string) : int
-- dip_ppx(string) : float
-- ppx_dip(string) : float
-- mm_ppx(string) : float
+- devicePixels()
+- dip_ppx()
+- ppx_dip()
+- mm_ppx()
 
 ### screen and window
 
-- monitorsCount() : int
-- logMonitors() : void
-- screenDimensions() : int [width, height]
-- windowRect(window) : int [left, top, width, height]
-- windowDimensions(window) : int [width, height]
-- setWindowDimensions(window, [int: width, int: height]) : bool
-- centerWindow(reference) : void
-- centerWindowXY(window, x, y) : void
-- bringToFrontWindow(window) : void
-- focusWindow() : void
+- monitorsCount()
+- logMonitors()
+- screenDimensions()
+- windowRect()
+- windowDimensions()
+- setWindowDimensions()
+- centerWindow()
+- centerWindowXY()
+- bringToFrontWindow()
+- focusWindow()
 
 ### keyboard
 
-- keyLogger(DOMElement, function) : bool
-- addKeyboardShortcut(DOMElement, shortcut, function) : bool
-- keyStr(Event) : string
+- keyLogger()
+- addKeyboardShortcut()
+- keyStr()
 
 ### misc.
 
-- sleep(ms) : void
-- addReloadWindow() : void
-- minimizeWindowShortcut() : void
-- closeWindowOnEscape(window) : void
+- sleep()
+- addReloadWindow()
+- minimizeWindowShortcut()
+- closeWindowOnEscape()
 
-- openLink(string) : void
+- openLink()
 
-- sciterInfo() : string
+- sciterInfo()
 
-- play(string) : Promise
+- play()
 
 ## demo
 
