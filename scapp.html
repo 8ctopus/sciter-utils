@@ -67,6 +67,7 @@ document.on("ready", function() {
         return false;
     })
 
+    // create new window to test centering on parent
     const window = new Window({
         parent: Window.this,
         url   : __DIR__ + "window.html",
@@ -121,6 +122,7 @@ document.on("click", "button#link", function(event, element) {
 });
 
 document.on("click", "button#resize", function(event, element) {
+    // resize window
     utils.setWindowDimensions(Window.this, [500, 200]);
 });
 
