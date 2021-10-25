@@ -10,10 +10,10 @@ console = Window.this.parent.document.globalThis.console;
 
 document.on("ready", function() {
     // center window on parent
-    utils.centerWindow("parent");
+    utils.centerWindow(Window.this, "parent");
 
     // close window on escape key press
-    utils.closeWindowOnEscape();
+    utils.closeWindowOnEscape(Window.this);
 });
 
 </script>

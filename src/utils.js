@@ -3,21 +3,22 @@ import * as sciter from "@sciter";
 
 /**
  * Convert measure in device pixels (ppx)
- * @param string(optional) measure
+ * @param string (optional) measure
+ * @param string (optional) axis ["width", "height"]
  * @return int
  */
-export function devicePixels(measure)
+export function devicePixels(measure, axis)
 {
     if (typeof measure === "undefined")
         measure = "1in";
 
-    return sciter.devicePixels(measure);
+    return sciter.devicePixels(measure, axis);
 }
 
 /**
  * Convert dip to ppx
  * @param string measure
- * @param int dpi resolution
+ * @param number dpi resolution
  * @return float value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
@@ -39,7 +40,7 @@ export function dip_ppx(measure, dpi)
 /**
  * Convert ppx to dip
  * @param string measure
- * @param int dpi resolution
+ * @param number dpi resolution
  * @return float value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
@@ -61,7 +62,7 @@ export function ppx_dip(measure, dpi)
 /**
  * Convert millimeters to ppx
  * @param string measure
- * @param int dpi resolution
+ * @param number dpi resolution
  * @return float value or false on failure
  */
 export function mm_ppx(measure, dpi)
@@ -111,7 +112,7 @@ export function logMonitors()
 
 /**
  * Get screen dimensions
- * @return [int, int]
+ * @return [int, int] in ppx
  */
 export function screenDimensions()
 {
@@ -125,16 +126,18 @@ export function screenDimensions()
 
 /**
  * Get window rectangle
- * @param Window (optional) - if no Window is provided Window.this will be used
+ * @param Window window
+ * @param bool ppx - ppx true, dpi false
  * @return Array [left, top, width, height]
+ * @throws Error
  */
-export function windowRect(window)
+export function windowRect(window, ppx)
 {
-    if (!window)
-        window = Window.this;
+    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof ppx !== "boolean")
+        throw Error("invalid arguments");
 
     // get window dimensions with border
-    const [wx, wy, ww, wh] = window.box("rectw", "border", "screen");
+    const [wx, wy, ww, wh] = window.box("rectw", "border", "screen", ppx);
 
     //console.debug(`window rect - (${wx} x ${wy}) ${ww} x ${wh}`);
 
@@ -143,13 +146,15 @@ export function windowRect(window)
 
 /**
  * Get window dimensions
- * @param Window (optional) - if no Window is provided Window.this will be used
+ * @param Window window
+ * @param bool ppx - ppx true, dpi false
  * @return [int, int]
+ * @throws Error
  */
-export function windowDimensions(window)
+export function windowDimensions(window, ppx)
 {
     // get window dimensions with border
-    const [wx, wy, ww, wh] = windowRect(window);
+    const [wx, wy, ww, wh] = windowRect(window, ppx);
 
     return [ww, wh];
 }
@@ -157,33 +162,49 @@ export function windowDimensions(window)
 /**
  * Set window dimensions
  * @param Window window
- * @param array dimensions
- * @return bool
+ * @param numbereger width
+ * @param numbereger height
+ * @param bool ppx - ppx true, dpi false
+ * @return void
+ * @throws Error
  */
-export function setWindowDimensions(window, dimensions)
+export function setWindowDimensions(window, width, height, ppx)
 {
-    if (!Array.isArray(dimensions) || window.constructor.name !== "Window")
-        return false;
+    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
+        throw Error("invalid arguments");
 
-    const rect = windowRect(window);
+    // get window top and left
+    const rect = windowRect(window, true);
 
-    Window.this.move(rect[0], rect[1], dimensions[0], dimensions[1]);
+    if (!ppx) {
+        // convert dpi to ppx
+        width  = sciter.devicePixels(width, "width");
+        height = sciter.devicePixels(height, "height");
+    }
+
+    // resize
+    Window.this.move(rect[0], rect[1], width, height);
 }
 
 /**
  * Center window on screen
- * @param string reference - "screen" | "parent"
+ * @param Window window
+ * @param string reference - ["screen", "parent"]
  * @return void
+ * @throws Error
  */
-export function centerWindow(reference)
+export function centerWindow(window, reference)
 {
+    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
+        throw Error("invalid arguments");
+
     let centerX, centerY;
 
-    if (reference === "parent" && Window.this.parent) {
+    if (reference === "parent" && window.parent) {
         //console.debug("center window on parent");
 
         // get parent window rectangle
-        const [px, py, pw, ph] = windowRect(Window.this.parent);
+        const [px, py, pw, ph] = windowRect(window.parent, true);
 
         centerX = px + pw / 2;
         centerY = py + ph / 2;
@@ -201,22 +222,23 @@ export function centerWindow(reference)
 
     //console.debug(`center (${centerX}, ${centerY})`);
 
-    centerWindowXY(Window.this, centerX, centerY);
+    centerWindowXY(window, centerX, centerY);
 }
 
 /**
  * Center window around position
- * @param Window window - if null, Window.this will be used
- * @param int x - x center
- * @param int y - y center
+ * @param Window window
+ * @param number x - x center in ppx
+ * @param number y - y center in ppx
  * @return void
+ * @throws Error
  */
 export function centerWindowXY(window, x, y)
 {
-    if (!window)
-        window = Window.this;
+    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof x !== "number" || typeof y !== "number")
+        throw Error("invalid arguments");
 
-    const [ww, wh] = windowDimensions(window);
+    const [ww, wh] = windowDimensions(window, true);
 
     // calculate position
     const left = x - ww / 2;
@@ -230,13 +252,14 @@ export function centerWindowXY(window, x, y)
 
 /**
  * Bring window to front
- * @param Window window - if null, Window.this will be used
+ * @param Window window
  * @return void
+ * @throws Error
  */
 export function windowToFront(window)
 {
-    if (!window)
-        window = Window.this;
+    if (typeof window !== "object" || window.constructor.name !== "Window")
+        throw Error("invalid arguments");
 
     // bring window to front
     window.isTopmost = true;
@@ -360,13 +383,14 @@ export function minimizeWindowShortcut()
 
 /**
  * Close window on escape
- * @param Window window - window handle or if null Window.this
+ * @param Window window
  * @return void
+ * @throws Error
  */
 export function closeWindowOnEscape(window)
 {
-    if (!window)
-        window = Window.this;
+    if (typeof window !== "object" || window.constructor.name !== "Window")
+        throw Error("invalid arguments");
 
     addKeyboardShortcut(window.document, {
         key: "KeyESCAPE",
@@ -399,7 +423,7 @@ export function sciterInfo()
 
 /**
  * Sleep function
- * @param int delay in milliseconds
+ * @param number delay in milliseconds
  * @return void
  * @note blocks code execution until completion, see https://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript
  */

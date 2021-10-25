@@ -44,16 +44,16 @@ document.on("ready", function() {
     utils.addReloadWindow();
 
     // close window on escape key press
-    utils.closeWindowOnEscape();
+    utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow("screen");
+    utils.centerWindow(Window.this, "screen");
 
     // center window around position
-    utils.centerWindowXY(null, 1200, 600);
+    utils.centerWindowXY(Window.this, 1200, 600);
 
     // bring window to front
-    utils.windowToFront();
+    utils.windowToFront(Window.this);
 
     // add minimize window shortcut
     utils.minimizeWindowShortcut();
@@ -121,9 +121,16 @@ document.on("click", "button#link", function(event, element) {
     utils.openLink(element.attributes["href"]);
 });
 
+// window size in dpi
+let a = [500, 200];
+
 document.on("click", "button#resize", function(event, element) {
     // resize window
-    utils.setWindowDimensions(Window.this, [500, 200]);
+    utils.setWindowDimensions(Window.this, a[0], a[1], false);
+
+    a = utils.windowDimensions(Window.this, false);
+
+    console.log(a);
 });
 
 </script>
