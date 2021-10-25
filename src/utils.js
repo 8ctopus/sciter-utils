@@ -277,6 +277,60 @@ export function focusWindow()
 }
 
 /**
+ * Add window reload with F5
+ * @return void
+ */
+export function addReloadWindow()
+{
+    addKeyboardShortcut(window.document, {
+        key: "KeyF5",
+    }, function() {
+        // reload app
+        Window.this.load(location.href);
+
+        // consume event
+        return true;
+    });
+}
+
+/**
+ * Add minimize window shortcut
+ * @return void
+ */
+export function minimizeWindowShortcut()
+{
+    addKeyboardShortcut(window.document, {
+        key: "KeyM",
+        metaKey: true,
+    }, function() {
+        console.log("Minimize window...");
+
+        Window.this.state = Window.WINDOW_MINIMIZED;
+
+        // consume event
+        return true;
+    });
+}
+
+/**
+ * Close window on escape
+ * @param Window window
+ * @return void
+ * @throws Error
+ */
+export function closeWindowOnEscape(window)
+{
+    if (typeof window !== "object" || window.constructor.name !== "Window")
+        throw Error("invalid arguments");
+
+    addKeyboardShortcut(window.document, {
+        key: "KeyESCAPE",
+    }, function() {
+        window.close();
+    })
+}
+
+/**
  * Get event key as string
  * @param Event event
  * @return string
@@ -343,60 +397,6 @@ export function addKeyboardShortcut(element, shortcut, func)
     });
 
     return true;
-}
-
-/**
- * Add window reload with F5
- * @return void
- */
-export function addReloadWindow()
-{
-    addKeyboardShortcut(window.document, {
-        key: "KeyF5",
-    }, function() {
-        // reload app
-        Window.this.load(location.href);
-
-        // consume event
-        return true;
-    });
-}
-
-/**
- * Add minimize window shortcut
- * @return void
- */
-export function minimizeWindowShortcut()
-{
-    addKeyboardShortcut(window.document, {
-        key: "KeyM",
-        metaKey: true,
-    }, function() {
-        console.log("Minimize window...");
-
-        Window.this.state = Window.WINDOW_MINIMIZED;
-
-        // consume event
-        return true;
-    });
-}
-
-/**
- * Close window on escape
- * @param Window window
- * @return void
- * @throws Error
- */
-export function closeWindowOnEscape(window)
-{
-    if (typeof window !== "object" || window.constructor.name !== "Window")
-        throw Error("invalid arguments");
-
-    addKeyboardShortcut(window.document, {
-        key: "KeyESCAPE",
-    }, function() {
-        window.close();
-    })
 }
 
 /**
