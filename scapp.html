@@ -115,7 +115,21 @@ document.ready = function() {
         function(error) {
             console.error("Play sound - FAILED");
         });
-});
+
+    // test json
+    let json = {};
+
+    try {
+        const url = __DIR__ + "test.json";
+
+        utils.loadJson(url, json);
+
+        utils.saveJson(url, json);
+    }
+    catch (e) {
+        console.exception(e);
+    }
+}
 
 document.on("click", "button#link", function(event, element) {
     utils.openLink(element.attributes["href"]);

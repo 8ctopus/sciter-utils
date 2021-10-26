@@ -1,5 +1,6 @@
 import * as env from "@env";
 import * as sciter from "@sciter";
+import * as sys from "@sys";
 
 /**
  * Convert measure in device pixels (ppx)
@@ -444,4 +445,60 @@ export async function play(file)
     // try catch not needed because of the promise
     const audio = await Audio.load(file);
     await audio.play();
+}
+
+/**
+ * Load string from file
+ * @param string url
+ * @return string
+ * @throws Error
+ */
+export function loadFile(url)
+{
+    // get url content
+    const result = fetch(url, {sync: true});
+
+    if (result.ok)
+        return result.text();
+
+    throw Error("Load file");
+}
+
+/**
+ * Load json from file
+ * @param string url
+ * @param object json
+ * @return void
+ * @throws Error
+ */
+export function loadJson(url, json)
+{
+    const text = loadFile(url);
+
+    // convert text to json
+    Object.assign(json, JSON.parse(text));
+}
+
+/**
+ * Save json to file
+ * @param string url
+ * @param object json
+ * @return void
+ * @throws Error
+ */
+export function saveJson(url, json)
+{
+    // convert json to string
+    const str = JSON.stringify(json, null, 4);
+
+    (async function() => {
+        // open file for writing
+        let file = await sys.fs.open(URL.toPath(url), "wb+");
+
+        // write to file
+        await file.write(str);
+
+        // close file
+        file.close();
+    })();
 }

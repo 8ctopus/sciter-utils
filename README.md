@@ -30,6 +30,12 @@ Useful functions for [sciter.js](https://sciter.com/).
 - addKeyboardShortcut()
 - keyStr()
 
+### json
+
+- loadFile()
+- loadJson()
+- saveJson()
+
 ### misc.
 
 - sleep()
