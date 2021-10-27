@@ -135,7 +135,7 @@ export function screenDimensions()
 export function windowRect(window, ppx)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof ppx !== "boolean")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     // get window dimensions with border
     const [wx, wy, ww, wh] = window.box("rectw", "border", "screen", ppx);
@@ -172,7 +172,7 @@ export function windowDimensions(window, ppx)
 export function setWindowDimensions(window, width, height, ppx)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     // get window top and left
     const rect = windowRect(window, true);
@@ -197,7 +197,7 @@ export function setWindowDimensions(window, width, height, ppx)
 export function centerWindow(window, reference)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     let centerX, centerY;
 
@@ -237,7 +237,7 @@ export function centerWindow(window, reference)
 export function centerWindowXY(window, x, y)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof x !== "number" || typeof y !== "number")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     const [ww, wh] = windowDimensions(window, true);
 
@@ -260,7 +260,7 @@ export function centerWindowXY(window, x, y)
 export function windowToFront(window)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     // bring window to front
     window.isTopmost = true;
@@ -322,7 +322,7 @@ export function minimizeWindowShortcut()
 export function closeWindowOnEscape(window)
 {
     if (typeof window !== "object" || window.constructor.name !== "Window")
-        throw Error("invalid arguments");
+        throw new Error("invalid arguments");
 
     addKeyboardShortcut(window.document, {
         key: "KeyESCAPE",
@@ -461,7 +461,7 @@ export function loadFile(url)
     if (result.ok)
         return result.text();
 
-    throw Error("Load file");
+    throw new Error("Load file");
 }
 
 /**
