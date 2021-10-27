@@ -21,6 +21,9 @@ Useful functions for [sciter.js](https://sciter.com/).
 - setWindowDimensions()
 - centerWindow()
 - centerWindowXY()
+- addReloadWindow()
+- minimizeWindowShortcut()
+- closeWindowOnEscape()
 - bringToFrontWindow()
 - focusWindow()
 
@@ -38,17 +41,10 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ### misc.
 
-- sleep()
-- addReloadWindow()
-- minimizeWindowShortcut()
-- closeWindowOnEscape()
-
-- openLink()
-
 - sciterInfo()
-
+- openLink()
 - play()
-
+- sleep()
 - flushIOQueue()
 
 ## demo
