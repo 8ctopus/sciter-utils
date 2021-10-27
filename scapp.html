@@ -119,16 +119,10 @@ document.ready = function() {
     // test json
     let json = {};
 
-    try {
-        const url = __DIR__ + "test.json";
+    const url = __DIR__ + "test.json";
 
-        utils.loadJson(url, json);
-
-        utils.saveJson(url, json);
-    }
-    catch (e) {
-        console.exception(e);
-    }
+    utils.loadJson(url, json);
+    utils.saveJson(url, json);
 }
 
 document.on("click", "button#link", function(event, element) {
