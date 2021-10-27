@@ -502,3 +502,16 @@ export function saveJson(url, json)
         file.close();
     })();
 }
+
+/**
+ * Flush IO queue
+ * @return void
+ * @note avoid closing app while some operations still haven't been executed
+ */
+export function flushIOQueue()
+{
+    // flush i/o queue before closing app otherwise the previous line never gets executed
+    for (let n = 0; n < 100; ++n)
+        if (!Window.this.doEvent("I/O"))
+            break;
+}

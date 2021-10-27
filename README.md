@@ -49,6 +49,8 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 - play()
 
+- flushIOQueue()
+
 ## demo
 
 - git clone the repository
