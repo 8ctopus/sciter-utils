@@ -123,6 +123,22 @@ document.ready = function() {
 
     utils.loadJson(url, json);
     utils.saveJson(url, json);
+
+    // test file and dir exist
+    let items = [
+        ".gitignore",
+        ".gitignore2",
+        "bin",
+        "bin2",
+    ];
+
+    items.forEach(function(item) {
+        console.log(`file exists ${item}`, utils.fileExists(item));
+    });
+
+    items.forEach(function(item) {
+        console.log(`dir exists ${item}`, utils.dirExists(item));
+    });
 }
 
 document.on("click", "button#link", function(event, element) {

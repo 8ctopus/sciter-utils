@@ -515,3 +515,27 @@ export function flushIOQueue()
         if (!Window.this.doEvent("I/O"))
             break;
 }
+
+/**
+ * Check if file exists
+ * @param  string file
+ * @return bool
+ */
+export function fileExists(file)
+{
+    const stat = sys.fs.$stat(file);
+
+    return stat === null ? false : (stat.st_mode & 0x8000 ? true : false);
+}
+
+/**
+ * Check if directory exists
+ * @param  string file
+ * @return bool
+ */
+export function dirExists(dir)
+{
+    const stat = sys.fs.$stat(dir);
+
+    return stat === null ? false : (stat.st_mode & 0x4000 ? true : false);
+}

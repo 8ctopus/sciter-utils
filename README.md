@@ -46,6 +46,8 @@ Useful functions for [sciter.js](https://sciter.com/).
 - play()
 - sleep()
 - flushIOQueue()
+- fileExists()
+- dirExists()
 
 ## demo
 
