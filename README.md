@@ -39,6 +39,11 @@ Useful functions for [sciter.js](https://sciter.com/).
 - loadJson()
 - saveJson()
 
+### files
+
+- fileExists()
+- dirExists()
+
 ### misc.
 
 - sciterInfo()
@@ -46,8 +51,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - play()
 - sleep()
 - flushIOQueue()
-- fileExists()
-- dirExists()
+- capitalizeFirstletter()
 
 ## demo
 

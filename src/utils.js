@@ -539,3 +539,13 @@ export function dirExists(dir)
 
     return stat === null ? false : (stat.st_mode & 0x4000 ? true : false);
 }
+
+/**
+ * Capitalize first letter
+ * @param string str
+ * @return string
+ */
+function capitalizeFirstLetter(str)
+{
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
