@@ -1,17 +1,17 @@
-# download sciter 4.4.8.14
-curl -LO https://github.com/c-smile/sciter-js-sdk/archive/b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397.zip
+# download sciter 4.4.8.15
+curl -LO https://github.com/c-smile/sciter-js-sdk/archive/faeba319c38bac2e833cbf0fe5a6be60cf87a24e.zip
 
 # unzip binaries
-unzip b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397.zip sciter-js-sdk-b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397/bin/macosx/* -d .
+unzip faeba319c38bac2e833cbf0fe5a6be60cf87a24e.zip sciter-js-sdk-faeba319c38bac2e833cbf0fe5a6be60cf87a24e/bin/macosx/* -d .
 
 # move binaries
-mv sciter-js-sdk-b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397/bin .
+mv sciter-js-sdk-faeba319c38bac2e833cbf0fe5a6be60cf87a24e/bin .
 
 # delete old dir
-rmdir sciter-js-sdk-b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397
+rmdir sciter-js-sdk-faeba319c38bac2e833cbf0fe5a6be60cf87a24e
 
 # delete zip
-rm b5c4d4efe4ed48fc96c7900c8e89e18c3c1c6397.zip
+rm faeba319c38bac2e833cbf0fe5a6be60cf87a24e.zip
 
 cd bin/macosx
 
@@ -20,5 +20,5 @@ chmod +x scapp inspector.app libsciter.dylib
 
 cd ..
 
-# sciter package manager 0.2.0
-curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.0/spm.phar
+# sciter package manager 0.2.1
+curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.1/spm.phar
