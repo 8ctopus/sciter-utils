@@ -24,18 +24,18 @@ import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
 
 import * as utils from "src/utils.js";
 
-document.ready = function() {
-    // initialize logger
-    logger.init();
+// initialize logger
+logger.init();
 
+// attach logger to console
+logger.attach();
+
+// capture unhandled exceptions
+logger.capture();
+
+document.ready = function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
-
-    // attach logger to console
-    logger.attach();
-
-    // capture unhandled exceptions
-    logger.capture();
 
     // log sciter version
     console.debug(utils.sciterInfo());
