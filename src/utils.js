@@ -461,7 +461,7 @@ export function loadFile(url)
     if (result.ok)
         return result.text();
 
-    throw new Error("Load file");
+    throw new Error(`Load file - ${result.status}`);
 }
 
 /**
