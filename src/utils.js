@@ -520,6 +520,7 @@ export function flushIOQueue()
  * Check if file exists
  * @param  string file
  * @return bool
+ * @note use file, not url
  */
 export function fileExists(file)
 {
@@ -532,6 +533,7 @@ export function fileExists(file)
  * Check if directory exists
  * @param  string file
  * @return bool
+ * @note use file, not url
  */
 export function dirExists(dir)
 {
