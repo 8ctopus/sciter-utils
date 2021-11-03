@@ -24,7 +24,7 @@ case "${machine}" in
     ;;
 
 "linux")
-    bin/linux/inspector
+    bin/linux/inspector &
     bin/linux/scapp scapp.html --debug
     ;;
 
