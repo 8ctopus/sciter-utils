@@ -28,7 +28,7 @@ case "${machine}" in
     bin/linux/scapp scapp.html --debug
     ;;
 
-"mac")
+"macosx")
     # open inspector
     open -a inspector.app
 

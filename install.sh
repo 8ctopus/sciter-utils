@@ -45,6 +45,7 @@ case "${machine}" in
     ;;
 
 "macosx")
+    # download the whole archive because of inspector.app which is a directory
     curl -LO https://github.com/c-smile/sciter-js-sdk/archive/faeba319c38bac2e833cbf0fe5a6be60cf87a24e.zip
 
     # unzip binaries
