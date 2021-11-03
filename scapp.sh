@@ -25,7 +25,7 @@ case "${machine}" in
 
 "linux")
     bin/linux/inspector &
-    bin/linux/scapp scapp.html --debug
+    bin/linux/scapp scapp.html --debug &
     ;;
 
 "macosx")
@@ -33,7 +33,7 @@ case "${machine}" in
     open -a inspector.app
 
     # open scapp application in debug mode
-    bin/macosx/scapp scapp.html --debug
+    bin/macosx/scapp scapp.html --debug &
     ;;
 
 esac
