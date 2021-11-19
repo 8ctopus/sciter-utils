@@ -33,7 +33,7 @@ case "${machine}" in
     open -a inspector.app
 
     # open scapp application in debug mode
-    bin/macosx/scapp scapp.html --debug &
+    bin/macosx/scapp main.html --debug &
     ;;
 
 esac
