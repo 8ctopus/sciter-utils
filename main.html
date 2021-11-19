@@ -31,7 +31,7 @@ logger.init();
 logger.attach();
 
 // capture unhandled exceptions
-logger.capture();
+logger.capture(unhandledExceptionHandler);
 
 document.ready = function() {
     // subscribe to logger messages
@@ -156,6 +156,17 @@ document.on("click", "button#resize", function(event, element) {
 
     console.log(a);
 });
+
+/**
+ * Unhandled exception handler
+ * @param  Error|String e
+ * @return void
+ */
+function unhandledExceptionHandler(e)
+{
+    // log exception using exception if it exists, error otherwise
+    typeof console.exception === "function" ? console.exception(e) : console.error(e);
+}
 
 </script>
 </head>
