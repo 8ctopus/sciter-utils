@@ -120,7 +120,7 @@ export function screenDimensions()
     // get screen dimensions
     const [w, h] = Window.this.screenBox("frame", "dimension");
 
-    //console.debug(`screen dimensions ${w} x ${h}`);
+    //console.debug("screen dimensions", w, h);
 
     return [w, h];
 }
@@ -156,6 +156,8 @@ export function windowDimensions(window, ppx)
 {
     // get window dimensions with border
     const [wx, wy, ww, wh] = windowRect(window, ppx);
+
+    //console.debug("window dimensions", wx, wy, ww, wh);
 
     return [ww, wh];
 }
@@ -221,8 +223,6 @@ export function centerWindow(window, reference)
         centerY = sh / 2;
     }
 
-    //console.debug(`center (${centerX}, ${centerY})`);
-
     centerWindowXY(window, centerX, centerY);
 }
 
@@ -245,7 +245,7 @@ export function centerWindowXY(window, x, y)
     const left = x - ww / 2;
     const top  = y - wh / 2;
 
-    //console.debug(`position ${left} x ${top}`);
+    //console.debug("center window", left, top);
 
     // move window
     window.move(left, top);
