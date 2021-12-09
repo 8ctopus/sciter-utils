@@ -140,7 +140,7 @@ export function windowRect(window, ppx)
     // get window dimensions with border
     const [wx, wy, ww, wh] = window.box("rectw", "border", "screen", ppx);
 
-    //console.debug(`window rect - (${wx} x ${wy}) ${ww} x ${wh}`);
+    //console.debug("window rect", wx, wy, ww, wh);
 
     return [wx, wy, ww, wh];
 }
@@ -383,7 +383,7 @@ export function addKeyboardShortcut(element, shortcut, func)
     shortcut.metaKey  = shortcut.metaKey ?? false;
 
     element.on("keyup", function(event) {
-        //console.debug("keyup - " + keyStr(event));
+        //console.debug("keyup", keyStr(event));
 
         // compare key
         if (event.code === shortcut.key &&
