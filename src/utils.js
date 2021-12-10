@@ -451,7 +451,7 @@ export async function play(file)
  * Load string from file
  * @param string url
  * @return string
- * @throws Error
+ * @throws Error if load file fails
  */
 export function loadFile(url)
 {
@@ -467,12 +467,17 @@ export function loadFile(url)
 /**
  * Load json from file
  * @param string url
- * @param object json
+ * @param[in,out] object json
  * @return void
- * @throws Error
+ * @throws Error if load file fails
  */
 export function loadJson(url, json)
 {
+    // clear json object
+    Object.getOwnPropertyNames(json).forEach(function(property) {
+        delete json[property];
+    });
+
     const text = loadFile(url);
 
     // convert text to json
@@ -484,7 +489,7 @@ export function loadJson(url, json)
  * @param string url
  * @param object json
  * @return void
- * @throws Error
+ * @throws Error if save file fails
  */
 export function saveJson(url, json)
 {

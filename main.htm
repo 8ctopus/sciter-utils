@@ -117,11 +117,15 @@ document.ready = function() {
         });
 
     // test json
-    let json = {};
+    let json = {
+        "b": 1
+    };
 
     const url = __DIR__ + "test/test.json";
 
     utils.loadJson(url, json);
+    console.debug("loadJson", json);
+
     utils.saveJson(url, json);
 
     // test file and dir exist
