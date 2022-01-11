@@ -34,7 +34,7 @@ logger.attach();
 logger.capture(unhandledExceptionHandler);
 
 document.on("ready", function() {
-    // subscribe to logger messages
+    // redirect logger output to plaintext
     logger.plaintext(document.$("plaintext#logger"));
 
     // log sciter version
