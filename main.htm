@@ -33,7 +33,7 @@ logger.attach();
 // capture unhandled exceptions
 logger.capture(unhandledExceptionHandler);
 
-document.ready = function() {
+document.on("ready", function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
@@ -143,7 +143,7 @@ document.ready = function() {
     items.forEach(function(item) {
         console.log(`dir exists ${item}`, utils.dirExists(item));
     });
-}
+});
 
 document.on("click", "button#link", function(event, element) {
     utils.openLink(element.attributes["href"]);
