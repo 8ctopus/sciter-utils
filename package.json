@@ -1,0 +1,22 @@
+{
+  "name": "sciter-utils",
+  "version": "0.6.10",
+  "description": "Useful functions for [sciter.js](https://sciter.com/).",
+  "main": "src/utils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/8ctopus/sciter-utils.git"
+  },
+  "author": {
+    "name": "8ctopus",
+    "email": "hello@octopuslabs.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/8ctopus/sciter-utils/issues"
+  },
+  "homepage": "https://github.com/8ctopus/sciter-utils#readme"
+}
