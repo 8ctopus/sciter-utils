@@ -3,6 +3,17 @@
   "version": "0.6.11",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
   "main": "src/utils.js",
+  "dependencies": {
+    "sciter-logger": "github:8ctopus/sciter-logger#1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-jsdoc": "^37.4.0",
+    "eslint-plugin-unicorn": "^39.0.0",
+    "htmlhint": "^1.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

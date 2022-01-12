@@ -7,7 +7,7 @@
 <title>sciter utils demo</title>
 <style>
 
-@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+@import url(node_modules/sciter-logger/src/logger.css);
 
 body {
     border-spacing: 1em;
@@ -20,22 +20,22 @@ plaintext#logger {
 </style>
 <script type="module">
 
-import logger from "vendor/8ctopus/sciter-logger/src/logger.js";
+import Logger from "node_modules/sciter-logger/src/logger.js";
 
 import * as utils from "src/utils.js";
 
 // initialize logger
-logger.init();
+Logger.init();
 
 // attach logger to console
-logger.attach();
+Logger.attach();
 
 // capture unhandled exceptions
-logger.capture(unhandledExceptionHandler);
+Logger.capture(unhandledExceptionHandler);
 
 document.on("ready", function() {
     // redirect logger output to plaintext
-    logger.plaintext(document.$("plaintext#logger"));
+    Logger.plaintext(document.$("plaintext#logger"));
 
     // log sciter version
     console.debug(utils.sciterInfo());
