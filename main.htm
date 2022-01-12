@@ -22,7 +22,7 @@ plaintext#logger {
 
 import Logger from "node_modules/sciter-logger/src/logger.js";
 
-import * as utils from "src/utils.js";
+import * as Utils from "src/utils.js";
 
 // initialize logger
 Logger.init();
@@ -38,32 +38,32 @@ document.on("ready", function() {
     Logger.plaintext(document.$("plaintext#logger"));
 
     // log sciter version
-    console.debug(utils.sciterInfo());
+    console.debug(Utils.sciterInfo());
 
     // add support for F5 reload
-    utils.addReloadWindow();
+    Utils.addReloadWindow();
 
     // close window on escape key press
-    utils.closeWindowOnEscape(Window.this);
+    Utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow(Window.this, "screen");
+    Utils.centerWindow(Window.this, "screen");
 
     // center window around position
-    utils.centerWindowXY(Window.this, 1200, 600);
+    Utils.centerWindowXY(Window.this, 1200, 600);
 
     // bring window to front
-    utils.windowToFront(Window.this);
+    Utils.windowToFront(Window.this);
 
     // add minimize window shortcut
-    utils.minimizeWindowShortcut();
+    Utils.minimizeWindowShortcut();
 
     // add keyboard shortcut
-    utils.addKeyboardShortcut(document, {
+    Utils.addKeyboardShortcut(document, {
         key: "KeyM",
         ctrlKey: true,
     }, function(event) {
-        console.log(utils.keyStr(event) + " pressed");
+        console.log(Utils.keyStr(event) + " pressed");
         return false;
     });
 
@@ -76,37 +76,37 @@ document.on("ready", function() {
     });
 
     // add key logger
-    utils.keyLogger(document, function(event) {
-        console.log(utils.keyStr(event) + " pressed");
+    Utils.keyLogger(document, function(event) {
+        console.log(Utils.keyStr(event) + " pressed");
         return false;
     });
 
     // dpi stuff
     console.line();
-    console.log(`device DPI = pixels in 1 inch - ${utils.devicePixels()}`);
-    console.log(`device pixels in 1 cm - ${utils.devicePixels("1cm")}`);
-    console.log(`device pixels in 1 mm - ${utils.devicePixels("1mm")}`);
+    console.log(`device DPI = pixels in 1 inch - ${Utils.devicePixels()}`);
+    console.log(`device pixels in 1 cm - ${Utils.devicePixels("1cm")}`);
+    console.log(`device pixels in 1 mm - ${Utils.devicePixels("1mm")}`);
 
     console.line();
-    console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${utils.dip_ppx("96dip", 142)}`);
-    console.log(`what is 142ppx in dip on a 142 DPI screen? - ${utils.ppx_dip("142ppx", 142)}`);
-    console.log(`what is 10cm in ppx on a 142 DPI screen? - ${utils.mm_ppx("100mm", 142)}`);
+    console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${Utils.dip_ppx("96dip", 142)}`);
+    console.log(`what is 142ppx in dip on a 142 DPI screen? - ${Utils.ppx_dip("142ppx", 142)}`);
+    console.log(`what is 10cm in ppx on a 142 DPI screen? - ${Utils.mm_ppx("100mm", 142)}`);
 
     console.line();
-    console.log(`monitors count - ${utils.monitorsCount()}`);
-    utils.logMonitors();
+    console.log(`monitors count - ${Utils.monitorsCount()}`);
+    Utils.logMonitors();
     console.log(`window is on monitor - ${Window.this.screen + 1}`);
 
     console.line();
 
     // test sleep function
     console.log("Sleep for 500ms");
-    utils.sleep(500);
+    Utils.sleep(500);
 
     // play sound
     const file = "C:\\Windows\\Media\\notify.wav";
 
-    const promise = utils.play(file);
+    const promise = Utils.play(file);
 
     promise.then(
         function(success) {
@@ -123,10 +123,10 @@ document.on("ready", function() {
 
     const url = __DIR__ + "test/test.json";
 
-    utils.loadJson(url, json);
+    Utils.loadJson(url, json);
     console.debug("loadJson", json);
 
-    utils.saveJson(url, json);
+    Utils.saveJson(url, json);
 
     // test file and dir exist
     const items = [
@@ -137,15 +137,15 @@ document.on("ready", function() {
     ];
 
     for (const item of items)
-        console.log(`file exists ${item}`, utils.fileExists(item));
+        console.log(`file exists ${item}`, Utils.fileExists(item));
 
 
     for (const item of items)
-        console.log(`dir exists ${item}`, utils.dirExists(item));
+        console.log(`dir exists ${item}`, Utils.dirExists(item));
 });
 
 document.on("click", "button#link", function(event, element) {
-    utils.openLink(element.attributes["href"]);
+    Utils.openLink(element.attributes["href"]);
 });
 
 // window size in dpi
@@ -153,9 +153,9 @@ let a = [500, 200];
 
 document.on("click", "button#resize", function(event, element) {
     // resize window
-    utils.setWindowDimensions(Window.this, a[0], a[1], false);
+    Utils.setWindowDimensions(Window.this, a[0], a[1], false);
 
-    a = utils.windowDimensions(Window.this, false);
+    a = Utils.windowDimensions(Window.this, false);
 
     console.log(a);
 });

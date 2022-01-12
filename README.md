@@ -2,6 +2,34 @@
 
 Useful functions for [sciter.js](https://sciter.com/).
 
+## demo
+
+- git clone the repository
+- on Linux/Mac `chmod +x install.sh start.sh`
+- run `install.bat` (Win) or `./install.sh` (Linux/Mac) to download the latest sciter binaries and the sciter package manager
+- install packages `npm install`
+- run `start.bat` (Win) or `./start.sh` (Linux/Mac)
+
+## install
+
+- use npm (`npm install git://github.com/8ctopus/sciter-logger#1.1.0`), alternatively add the `src` dir to your project
+- add to `<script type="module">`
+
+```js
+import * as Utils from "src/utils.js";
+
+document.on("ready", function() {
+    // add support for F5 reload
+    Utils.addReloadWindow();
+
+    // center window on screen
+    Utils.centerWindow();
+
+    // center window around position
+    Utils.centerWindowXY(100, 100);
+});
+```
+
 ## functions
 
 ### dpi
@@ -52,31 +80,3 @@ Useful functions for [sciter.js](https://sciter.com/).
 - sleep()
 - flushIOQueue()
 - capitalizeFirstletter()
-
-## demo
-
-- git clone the repository
-- on Linux/Mac `chmod +x install.sh start.sh`
-- run `install.bat` (Win) or `./install.sh` (Linux/Mac) to download the latest sciter binaries and the sciter package manager
-- install packages `npm install`
-- run `start.bat` (Win) or `./start.sh` (Linux/Mac)
-
-## install
-
-- add the `src` dir to your project
-- add to `<script type="module">`
-
-```js
-import * as utils from "src/utils.js";
-
-document.on("ready", function() {
-    // add support for F5 reload
-    utils.addReloadWindow();
-
-    // center window on screen
-    utils.centerWindow();
-
-    // center window around position
-    utils.centerWindowXY(100, 100);
-});
-```
