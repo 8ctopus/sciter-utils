@@ -14,4 +14,4 @@ curl -LO https://github.com/c-smile/sciter-js-sdk/raw/%sciterSDK%/bin/windows/x3
 cd ..
 
 REM sciter package manager 0.2.2
-curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.2/spm.phar
+REM curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.2/spm.phar
