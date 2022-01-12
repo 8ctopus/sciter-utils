@@ -16,7 +16,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 - add to `<script type="module">`
 
 ```js
-import * as Utils from "src/utils.js";
+import * as Utils from "node_modules/sciter-utils/src/utils.js";
 
 document.on("ready", function() {
     // add support for F5 reload
