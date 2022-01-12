@@ -65,13 +65,13 @@ document.on("ready", function() {
     }, function(event) {
         console.log(utils.keyStr(event) + " pressed");
         return false;
-    })
+    });
 
     // create new window to test centering on parent
-    const window = new Window({
+    new Window({
         parent: Window.this,
-        url   : __DIR__ + "window.html",
-        state : Window.WINDOW_SHOWN,
+        url: __DIR__ + "window.html",
+        state: Window.WINDOW_SHOWN,
         alignment: 1,
     });
 
@@ -104,7 +104,7 @@ document.on("ready", function() {
     utils.sleep(500);
 
     // play sound
-    let file = "C:\\Windows\\Media\\notify.wav";
+    const file = "C:\\Windows\\Media\\notify.wav";
 
     const promise = utils.play(file);
 
@@ -117,8 +117,8 @@ document.on("ready", function() {
         });
 
     // test json
-    let json = {
-        "b": 1
+    const json = {
+        "b": 1,
     };
 
     const url = __DIR__ + "test/test.json";
@@ -129,20 +129,19 @@ document.on("ready", function() {
     utils.saveJson(url, json);
 
     // test file and dir exist
-    let items = [
+    const items = [
         ".gitignore",
         ".gitignore2",
         "bin",
         "bin2",
     ];
 
-    items.forEach(function(item) {
+    for (const item of items)
         console.log(`file exists ${item}`, utils.fileExists(item));
-    });
 
-    items.forEach(function(item) {
+
+    for (const item of items)
         console.log(`dir exists ${item}`, utils.dirExists(item));
-    });
 });
 
 document.on("click", "button#link", function(event, element) {
@@ -163,13 +162,11 @@ document.on("click", "button#resize", function(event, element) {
 
 /**
  * Unhandled exception handler
- * @param  Error|String e
- * @return void
+ * @param {Error|string} error
  */
-function unhandledExceptionHandler(e)
-{
+function unhandledExceptionHandler(error) {
     // log exception using exception if it exists, error otherwise
-    typeof console.exception === "function" ? console.exception(e) : console.error(e);
+    typeof console.exception === "function" ? console.exception(error) : console.error(error);
 }
 
 </script>

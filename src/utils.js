@@ -4,12 +4,11 @@ import * as sys from "@sys";
 
 /**
  * Convert measure in device pixels (ppx)
- * @param string (optional) measure
- * @param string (optional) axis ["width", "height"]
- * @return int
+ * @param {string} measure - (optional)
+ * @param {string} axis - (optional) ["width", "height"]
+ * @returns {number}
  */
-export function devicePixels(measure, axis)
-{
+export function devicePixels(measure, axis) {
     if (typeof measure === "undefined")
         measure = "1in";
 
@@ -18,18 +17,17 @@ export function devicePixels(measure, axis)
 
 /**
  * Convert dip to ppx
- * @param string measure
- * @param number dpi resolution
- * @return float value or false on failure
+ * @param {string} measure
+ * @param {number} dpi - resolution
+ * @returns {number} value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
-export function dip_ppx(measure, dpi)
-{
+export function dip_ppx(measure, dpi) {
     // extract value and unit
-    const [,value, unit] = measure.match(/(\d+)(\w+)/);
+    const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
     // convert value to number
-    const length = parseInt(value);
+    const length = Number.parseInt(value);
 
     // check types
     if (typeof length !== "number" || unit !== "dip")
@@ -40,18 +38,17 @@ export function dip_ppx(measure, dpi)
 
 /**
  * Convert ppx to dip
- * @param string measure
- * @param number dpi resolution
- * @return float value or false on failure
+ * @param {string} measure
+ * @param {number} dpi - resolution
+ * @returns {number} value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
-export function ppx_dip(measure, dpi)
-{
+export function ppx_dip(measure, dpi) {
     // extract value and unit
-    const [,value, unit] = measure.match(/(\d+)(\w+)/);
+    const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
     // convert value to number
-    const length = parseInt(value);
+    const length = Number.parseInt(value);
 
     // check types
     if (typeof length !== "number" || unit !== "ppx")
@@ -62,17 +59,16 @@ export function ppx_dip(measure, dpi)
 
 /**
  * Convert millimeters to ppx
- * @param string measure
- * @param number dpi resolution
- * @return float value or false on failure
+ * @param {string} measure
+ * @param {number} dpi - resolution
+ * @returns {number} value or false on failure
  */
-export function mm_ppx(measure, dpi)
-{
+export function mm_ppx(measure, dpi) {
     // extract value and unit
-    const [,value, unit] = measure.match(/([.\d]+)(\w+)/);
+    const [, value, unit] = measure.match(/([\d.]+)(\w+)/);
 
     // convert value to number
-    const length = parseFloat(value);
+    const length = Number.parseFloat(value);
 
     // check types
     if (typeof length !== "number" || unit !== "mm")
@@ -86,37 +82,33 @@ export function mm_ppx(measure, dpi)
 
 /**
  * Get monitors count
- * @return int
+ * @returns {number}
  */
-export function monitorsCount()
-{
+export function monitorsCount() {
     return Window.screens;
 }
 
 /**
  * Log monitors info
- * @return void
  */
-export function logMonitors()
-{
+export function logMonitors() {
     const screens = monitorsCount();
 
-    for (let i=0; i < screens; ++i) {
-        const [w, h]  = Window.screenBox(i, "frame", "dimension");
-        const primary = Window.screenBox(i, "isPrimary");
-        const device  = Window.screenBox(i, "device");
-        const ratio   = Window.screenBox(i, "devicePixelRatio");
+    for (let index=0; index < screens; ++index) {
+        const [w, h] = Window.screenBox(index, "frame", "dimension");
+        const primary = Window.screenBox(index, "isPrimary");
+        const device = Window.screenBox(index, "device");
+        const ratio = Window.screenBox(index, "devicePixelRatio");
 
-        console.log(`monitor ${i + 1} - ${w} x ${h} - ${primary ? "primary" : "secondary"} - ${device} - ${ratio}`);
+        console.log(`monitor ${index + 1} - ${w} x ${h} - ${primary ? "primary" : "secondary"} - ${device} - ${ratio}`);
     }
 }
 
 /**
  * Get screen dimensions
- * @return [int, int] in ppx
+ * @returns {Array} [width, height] in ppx
  */
-export function screenDimensions()
-{
+export function screenDimensions() {
     // get screen dimensions
     const [w, h] = Window.this.screenBox("frame", "dimension");
 
@@ -127,13 +119,12 @@ export function screenDimensions()
 
 /**
  * Get window rectangle
- * @param Window window
- * @param bool ppx - ppx true, dpi false
- * @return Array [left, top, width, height]
+ * @param {Window} window
+ * @param {boolean} ppx - ppx true, dpi false
+ * @returns {Array} [left, top, width, height]
  * @throws Error
  */
-export function windowRect(window, ppx)
-{
+export function windowRect(window, ppx) {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof ppx !== "boolean")
         throw new Error("invalid arguments");
 
@@ -147,33 +138,31 @@ export function windowRect(window, ppx)
 
 /**
  * Get window dimensions
- * @param Window window
- * @param bool ppx - ppx true, dpi false
- * @return [int, int]
+ * @param {Window} window
+ * @param {boolean} ppx - ppx true, dpi false
+ * @returns {Array} [int,int]
  * @throws Error
  */
-export function windowDimensions(window, ppx)
-{
+export function windowDimensions(window, ppx) {
     // get window dimensions with border
-    const [wx, wy, ww, wh] = windowRect(window, ppx);
+    const [, , ww, wh] = windowRect(window, ppx);
 
-    //console.debug("window dimensions", wx, wy, ww, wh);
+    //console.debug("window dimensions", ww, wh);
 
     return [ww, wh];
 }
 
 /**
  * Set window dimensions
- * @param Window window
- * @param numbereger width
- * @param numbereger height
- * @param bool ppx - ppx true, dpi false
- * @return void
+ * @param {Window} window
+ * @param {number} width
+ * @param {number} height
+ * @param {boolean} ppx - ppx true, dpi false
  * @throws Error
  */
-export function setWindowDimensions(window, width, height, ppx)
-{
-    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
+export function setWindowDimensions(window, width, height, ppx) {
+    if (typeof window !== "object" || window.constructor.name !== "Window" ||
+            typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
         throw new Error("invalid arguments");
 
     // get window top and left
@@ -181,7 +170,7 @@ export function setWindowDimensions(window, width, height, ppx)
 
     if (!ppx) {
         // convert dpi to ppx
-        width  = sciter.devicePixels(width, "width");
+        width = sciter.devicePixels(width, "width");
         height = sciter.devicePixels(height, "height");
     }
 
@@ -191,17 +180,15 @@ export function setWindowDimensions(window, width, height, ppx)
 
 /**
  * Center window on screen
- * @param Window window
- * @param string reference - ["screen", "parent"]
- * @return void
+ * @param {Window} window
+ * @param {string} reference - ["screen", "parent"]
  * @throws Error
  */
-export function centerWindow(window, reference)
-{
+export function centerWindow(window, reference) {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
         throw new Error("invalid arguments");
 
-    let centerX, centerY;
+    let centerX; let centerY;
 
     if (reference === "parent" && window.parent) {
         //console.debug("center window on parent");
@@ -228,22 +215,21 @@ export function centerWindow(window, reference)
 
 /**
  * Center window around position
- * @param Window window
- * @param number x - x center in ppx
- * @param number y - y center in ppx
- * @return void
+ * @param {Window} window
+ * @param {number} x - x center in ppx
+ * @param {number} y - y center in ppx
  * @throws Error
  */
-export function centerWindowXY(window, x, y)
-{
-    if (typeof window !== "object" || window.constructor.name !== "Window" || typeof x !== "number" || typeof y !== "number")
+export function centerWindowXY(window, x, y) {
+    if (typeof window !== "object" || window.constructor.name !== "Window" ||
+            typeof x !== "number" || typeof y !== "number")
         throw new Error("invalid arguments");
 
     const [ww, wh] = windowDimensions(window, true);
 
     // calculate position
     const left = x - ww / 2;
-    const top  = y - wh / 2;
+    const top = y - wh / 2;
 
     //console.debug("center window", left, top);
 
@@ -253,12 +239,10 @@ export function centerWindowXY(window, x, y)
 
 /**
  * Bring window to front
- * @param Window window
- * @return void
+ * @param {Window} window
  * @throws Error
  */
-export function windowToFront(window)
-{
+export function windowToFront(window) {
     if (typeof window !== "object" || window.constructor.name !== "Window")
         throw new Error("invalid arguments");
 
@@ -269,20 +253,16 @@ export function windowToFront(window)
 
 /**
  * Focus window
- * @return void
  */
-export function focusWindow()
-{
+export function focusWindow() {
     // set focus
     document.body.state.focus = true;
 }
 
 /**
  * Add window reload with F5
- * @return void
  */
-export function addReloadWindow()
-{
+export function addReloadWindow() {
     addKeyboardShortcut(window.document, {
         key: "KeyF5",
     }, function() {
@@ -296,10 +276,8 @@ export function addReloadWindow()
 
 /**
  * Add minimize window shortcut
- * @return void
  */
-export function minimizeWindowShortcut()
-{
+export function minimizeWindowShortcut() {
     addKeyboardShortcut(window.document, {
         key: "KeyM",
         metaKey: true,
@@ -315,12 +293,10 @@ export function minimizeWindowShortcut()
 
 /**
  * Close window on escape
- * @param Window window
- * @return void
+ * @param {Window} window
  * @throws Error
  */
-export function closeWindowOnEscape(window)
-{
+export function closeWindowOnEscape(window) {
     if (typeof window !== "object" || window.constructor.name !== "Window")
         throw new Error("invalid arguments");
 
@@ -328,16 +304,15 @@ export function closeWindowOnEscape(window)
         key: "KeyESCAPE",
     }, function() {
         window.close();
-    })
+    });
 }
 
 /**
  * Get event key as string
- * @param Event event
- * @return string
+ * @param {Event} event
+ * @returns {string}
  */
-export function keyStr(event)
-{
+export function keyStr(event) {
     const code = event.code.replace("Key", "");
 
     return `${event.metaKey ? "meta": ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift": ""} ${code}`;
@@ -345,18 +320,17 @@ export function keyStr(event)
 
 /**
  * Log keyboard keys
- * @param DOMElement element
- * @param function func to call
- * @return bool
+ * @param {Element} element
+ * @param {Function} function_ - func to call
+ * @returns {boolean}
  */
-export function keyLogger(element, func)
-{
-    if (element === undefined || typeof func !== "function")
+export function keyLogger(element, function_) {
+    if (element === undefined || typeof function_ !== "function")
         return false;
 
     element.on("keyup", function(event) {
         // call function
-        let result = func(event);
+        const result = function_(event);
 
         if (result !== undefined)
             return result;
@@ -367,30 +341,33 @@ export function keyLogger(element, func)
 
 /**
  * Add keyboard shortcut
- * @param DOMElement element
- * @param object shortcut
- * @param function func to call
- * @return bool
+ * @param {Element} element
+ * @param {object} shortcut
+ * @param {Function} function_ - func to call
+ * @returns {boolean}
  */
-export function addKeyboardShortcut(element, shortcut, func)
-{
-    if (element === undefined || shortcut === undefined || shortcut.key === undefined || typeof func !== "function")
+export function addKeyboardShortcut(element, shortcut, function_) {
+    if (element === undefined || shortcut === undefined ||
+            shortcut.key === undefined || typeof function_ !== "function")
         return false;
 
-    shortcut.ctrlKey  = shortcut.ctrlKey ?? false;
+    shortcut.ctrlKey = shortcut.ctrlKey ?? false;
     shortcut.shiftKey = shortcut.shiftKey ?? false;
-    shortcut.altKey   = shortcut.altKey ?? false;
-    shortcut.metaKey  = shortcut.metaKey ?? false;
+    shortcut.altKey = shortcut.altKey ?? false;
+    shortcut.metaKey = shortcut.metaKey ?? false;
 
     element.on("keyup", function(event) {
         //console.debug("keyup", keyStr(event));
 
         // compare key
         if (event.code === shortcut.key &&
-                // compare modifiers
-                event.ctrlKey === shortcut.ctrlKey && event.shiftKey === shortcut.shiftKey && event.altKey === shortcut.altKey) {
+            // compare modifiers
+            event.ctrlKey === shortcut.ctrlKey &&
+            event.shiftKey === shortcut.shiftKey &&
+            event.altKey === shortcut.altKey) {
+
             // call function
-            let result = func(event);
+            const result = function_(event);
 
             if (result !== undefined)
                 return result;
@@ -402,11 +379,9 @@ export function addKeyboardShortcut(element, shortcut, func)
 
 /**
  * Open link in browser
- * @param  string url
- * @return void
+ * @param {string} url
  */
-export function openLink(url)
-{
+export function openLink(url) {
     console.log(`GUI - Open link in browser - ${url}`);
 
     // open url in default browser
@@ -415,33 +390,30 @@ export function openLink(url)
 
 /**
  * Get sciter info
- * @return string
+ * @returns {string}
  */
-export function sciterInfo()
-{
+export function sciterInfo() {
     return `sciter v${sciter.VERSION} r${sciter.REVISION} quick.js v${sciter.QUICKJS_VERSION}`;
 }
 
 /**
  * Sleep function
- * @param number delay in milliseconds
- * @return void
- * @note blocks code execution until completion, see https://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript
+ * @param {number} delay - in milliseconds
+ * @note blocks code execution until completion,
+ * see https://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript
  */
-export function sleep(delay)
-{
-    const start = new Date().getTime();
+export function sleep(delay) {
+    const start = Date.now();
 
-    while (new Date().getTime() < start + delay);
+    while (Date.now() < start + delay);
 }
 
 /**
  * Play sound
- * @param  string file
- * @return Promise
+ * @param {string} file
+ * @returns {Promise}
  */
-export async function play(file)
-{
+export async function play(file) {
     // try catch not needed because of the promise
     const audio = await Audio.load(file);
     await audio.play();
@@ -449,12 +421,11 @@ export async function play(file)
 
 /**
  * Load string from file
- * @param string url
- * @return string
+ * @param {string} url
+ * @returns {string}
  * @throws Error if load file fails
  */
-export function loadFile(url)
-{
+export function loadFile(url) {
     // get url content
     const result = fetch(url, {sync: true});
 
@@ -466,17 +437,15 @@ export function loadFile(url)
 
 /**
  * Load json from file
- * @param string url
- * @param[in,out] object json
- * @return void
+ * @param {string} url
+ * @param {object} json - [in,out]
  * @throws Error if load file fails
  */
-export function loadJson(url, json)
-{
+export function loadJson(url, json) {
     // clear json object
-    Object.getOwnPropertyNames(json).forEach(function(property) {
+    for (const property of Object.getOwnPropertyNames(json))
         delete json[property];
-    });
+
 
     const text = loadFile(url);
 
@@ -486,22 +455,20 @@ export function loadJson(url, json)
 
 /**
  * Save json to file
- * @param string url
- * @param object json
- * @return void
+ * @param {string} url
+ * @param {object} json
  * @throws Error if save file fails
  */
-export function saveJson(url, json)
-{
+export function saveJson(url, json) {
     // convert json to string
-    const str = JSON.stringify(json, null, 4);
+    const string_ = JSON.stringify(json, undefined, 4);
 
-    (async function() => {
+    (async () => {
         // open file for writing
-        let file = await sys.fs.open(URL.toPath(url), "wb+");
+        const file = await sys.fs.open(URL.toPath(url), "wb+");
 
         // write to file
-        await file.write(str);
+        await file.write(string_);
 
         // close file
         file.close();
@@ -510,49 +477,45 @@ export function saveJson(url, json)
 
 /**
  * Flush IO queue
- * @return void
  * @note avoid closing app while some operations still haven't been executed
  */
-export function flushIOQueue()
-{
+export function flushIOQueue() {
     // flush i/o queue before closing app otherwise the previous line never gets executed
-    for (let n = 0; n < 100; ++n)
+    for (let n = 0; n < 100; ++n) {
         if (!Window.this.doEvent("I/O"))
             break;
+    }
 }
 
 /**
  * Check if file exists
- * @param  string file
- * @return bool
+ * @param {string} file
+ * @returns {boolean}
  * @note use file, not url
  */
-export function fileExists(file)
-{
+export function fileExists(file) {
     const stat = sys.fs.$stat(file);
 
-    return stat === null ? false : (stat.st_mode & 0x8000 ? true : false);
+    return stat === null ? false : (stat.st_mode & 0x80_00 ? true : false);
 }
 
 /**
  * Check if directory exists
- * @param  string file
- * @return bool
+ * @param {string} dir
+ * @returns {boolean}
  * @note use file, not url
  */
-export function dirExists(dir)
-{
+export function dirExists(dir) {
     const stat = sys.fs.$stat(dir);
 
-    return stat === null ? false : (stat.st_mode & 0x4000 ? true : false);
+    return stat === null ? false : (stat.st_mode & 0x40_00 ? true : false);
 }
 
 /**
  * Capitalize first letter
- * @param string str
- * @return string
+ * @param {string} string_
+ * @returns {string}
  */
-function capitalizeFirstLetter(str)
-{
-    return str.charAt(0).toUpperCase() + str.slice(1);
+export function capitalizeFirstLetter(string_) {
+    return string_.charAt(0).toUpperCase() + string_.slice(1);
 }
