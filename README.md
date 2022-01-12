@@ -12,7 +12,7 @@ Useful functions for [sciter.js](https://sciter.com/).
 
 ## install
 
-- use npm (`npm install git://github.com/8ctopus/sciter-logger#1.1.0`), alternatively add the `src` dir to your project
+- use npm (`npm install git://github.com/8ctopus/sciter-utils#0.7.0`), alternatively add the `src` dir to your project
 - add to `<script type="module">`
 
 ```js
