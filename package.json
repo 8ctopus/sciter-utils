@@ -2,24 +2,13 @@
   "name": "sciter-utils",
   "version": "0.7.0",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
-  "main": "src/utils.js",
-  "dependencies": {
-    "sciter-logger": "github:8ctopus/sciter-logger#1.1.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-html": "^6.2.0",
-    "eslint-plugin-jsdoc": "^37.4.0",
-    "eslint-plugin-unicorn": "^39.0.0",
-    "htmlhint": "^1.0.0"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/8ctopus/sciter-utils.git"
+    "install-sdk": "node ./node_modules/sciter-sandbox/scripts/install.mjs cleanup",
+    "scapp": "node ./node_modules/sciter-sandbox/scripts/start.mjs scapp",
+    "usciter": "node ./node_modules/sciter-sandbox/scripts/start.mjs usciter",
+    "stop": "node ./node_modules/sciter-sandbox/scripts/stop.mjs",
+    "scapp32": "node ./node_modules/sciter-sandbox/scripts/start.mjs scapp32",
+    "usciter32": "node ./node_modules/sciter-sandbox/scripts/start.mjs usciter32"
   },
   "author": {
     "name": "8ctopus",
@@ -29,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/8ctopus/sciter-utils/issues"
   },
-  "homepage": "https://github.com/8ctopus/sciter-utils#readme"
+  "homepage": "https://github.com/8ctopus/sciter-utils#readme",
+  "devDependencies": {
+    "sciter-sandbox": "^1.1.12",
+    "sciter-logger": "github:8ctopus/sciter-logger#1.1.0"
+  }
 }
