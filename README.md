@@ -42,6 +42,10 @@ document.on("ready", function() {
 });
 ```
 
+## known issues
+
+- [Crashes are experienced with in sciter.js 4.4.8.24](https://sciter.com/forums/topic/4-4-8-24-new-window-instability/).
+
 ## functions
 
 ### dpi
