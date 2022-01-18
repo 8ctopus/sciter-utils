@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/8ctopus/sciter-utils#readme",
   "devDependencies": {
-    "sciter-sandbox": "^1.1.12",
-    "sciter-logger": "github:8ctopus/sciter-logger#1.1.0"
+    "sciter-logger": "^1.1.3",
+    "sciter-sandbox": "^1.1.12"
   }
 }
