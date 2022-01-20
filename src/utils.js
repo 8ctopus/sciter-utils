@@ -397,7 +397,7 @@ export function sciterInfo() {
 }
 
 /**
- * Sleep function
+ * Sleep
  * @param {number} delay - in milliseconds
  * @note blocks code execution until completion,
  * see https://stackoverflow.com/questions/1141302/is-there-a-sleep-function-in-javascript
@@ -406,6 +406,9 @@ export function sleep(delay) {
     const start = Date.now();
 
     while (Date.now() < start + delay);
+
+    // not implemented yet
+    //Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, delay);
 }
 
 /**
