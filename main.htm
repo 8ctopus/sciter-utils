@@ -31,7 +31,7 @@ Logger.init();
 Logger.attach();
 
 // capture unhandled exceptions
-Logger.capture(unhandledExceptionHandler);
+Logger.capture();
 
 document.on("ready", function() {
     // redirect logger output to plaintext
@@ -109,10 +109,10 @@ document.on("ready", function() {
     const promise = Utils.play(file);
 
     promise.then(
-        function(success) {
+        function() {
             console.note("Play sound - OK");
         },
-        function(error) {
+        function() {
             console.error("Play sound - FAILED");
         });
 
@@ -143,14 +143,14 @@ document.on("ready", function() {
         console.log(`dir exists ${item}`, Utils.dirExists(item));
 });
 
-document.on("click", "button#link", function(event, element) {
+document.on("click", "button#link", function(_event, element) {
     Utils.openLink(element.attributes.href);
 });
 
 // window size in dpi
 let a = [500, 200];
 
-document.on("click", "button#resize", function(event, element) {
+document.on("click", "button#resize", function(_event, _element) {
     // resize window
     Utils.setWindowDimensions(Window.this, a[0], a[1], false);
 
@@ -158,15 +158,6 @@ document.on("click", "button#resize", function(event, element) {
 
     console.log(a);
 });
-
-/**
- * Unhandled exception handler
- * @param {Error|string} error
- */
-function unhandledExceptionHandler(error) {
-    // log exception using exception if it exists, error otherwise
-    typeof console.exception === "function" ? console.exception(error) : console.error(error);
-}
 
 </script>
 </head>

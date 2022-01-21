@@ -27,7 +27,7 @@ export function dip_ppx(measure, dpi) {
     const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
     // convert value to number
-    const length = Number.parseInt(value);
+    const length = Number.parseInt(value, 10);
 
     // check types
     if (typeof length !== "number" || unit !== "dip")
@@ -48,7 +48,7 @@ export function ppx_dip(measure, dpi) {
     const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
     // convert value to number
-    const length = Number.parseInt(value);
+    const length = Number.parseInt(value, 10);
 
     // check types
     if (typeof length !== "number" || unit !== "ppx")
@@ -145,7 +145,7 @@ export function windowRect(window, ppx) {
  */
 export function windowDimensions(window, ppx) {
     // get window dimensions with border
-    const [, , ww, wh] = windowRect(window, ppx);
+    const [ww, wh] = windowRect(window, ppx).slice(2, 4);
 
     //console.debug("window dimensions", ww, wh);
 
@@ -188,7 +188,8 @@ export function centerWindow(window, reference) {
     if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
         throw new Error("invalid arguments");
 
-    let centerX; let centerY;
+    let centerX;
+    let centerY;
 
     if (reference === "parent" && window.parent) {
         //console.debug("center window on parent");
@@ -196,8 +197,8 @@ export function centerWindow(window, reference) {
         // get parent window rectangle
         const [px, py, pw, ph] = windowRect(window.parent, true);
 
-        centerX = px + pw / 2;
-        centerY = py + ph / 2;
+        centerX = px + (pw / 2);
+        centerY = py + (ph / 2);
     }
     else {
         //console.debug("center window on screen");
@@ -228,8 +229,8 @@ export function centerWindowXY(window, x, y) {
     const [ww, wh] = windowDimensions(window, true);
 
     // calculate position
-    const left = x - ww / 2;
-    const top = y - wh / 2;
+    const left = x - (ww / 2);
+    const top = y - (wh / 2);
 
     //console.debug("center window", left, top);
 
@@ -263,7 +264,7 @@ export function focusWindow() {
  * Add window reload with F5
  */
 export function addReloadWindow() {
-    addKeyboardShortcut(window.document, {
+    addKeyboardShortcut(Window.document, {
         key: "KeyF5",
     }, function() {
         // reload app
@@ -278,7 +279,7 @@ export function addReloadWindow() {
  * Add minimize window shortcut
  */
 export function minimizeWindowShortcut() {
-    addKeyboardShortcut(window.document, {
+    addKeyboardShortcut(Window.document, {
         key: "KeyM",
         metaKey: true,
     }, function() {
@@ -302,7 +303,7 @@ export function closeWindowOnEscape(window) {
 
     addKeyboardShortcut(window.document, {
         key: "KeyESCAPE",
-    }, function() {
+    }, function(window) {
         window.close();
     });
 }
