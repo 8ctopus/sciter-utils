@@ -118,7 +118,7 @@ document.on("ready", function() {
 
     // test json
     const json = {
-        "b": 1,
+        b: 1,
     };
 
     const url = __DIR__ + "test/test.json";
@@ -139,13 +139,12 @@ document.on("ready", function() {
     for (const item of items)
         console.log(`file exists ${item}`, Utils.fileExists(item));
 
-
     for (const item of items)
         console.log(`dir exists ${item}`, Utils.dirExists(item));
 });
 
 document.on("click", "button#link", function(event, element) {
-    Utils.openLink(element.attributes["href"]);
+    Utils.openLink(element.attributes.href);
 });
 
 // window size in dpi

@@ -94,7 +94,7 @@ export function monitorsCount() {
 export function logMonitors() {
     const screens = monitorsCount();
 
-    for (let index=0; index < screens; ++index) {
+    for (let index = 0; index < screens; ++index) {
         const [w, h] = Window.screenBox(index, "frame", "dimension");
         const primary = Window.screenBox(index, "isPrimary");
         const device = Window.screenBox(index, "device");
@@ -161,8 +161,8 @@ export function windowDimensions(window, ppx) {
  * @throws Error
  */
 export function setWindowDimensions(window, width, height, ppx) {
-    if (typeof window !== "object" || window.constructor.name !== "Window" ||
-            typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
+    if (typeof window !== "object" || window.constructor.name !== "Window"
+            || typeof width !== "number" || typeof height !== "number" || typeof ppx !== "boolean")
         throw new Error("invalid arguments");
 
     // get window top and left
@@ -221,8 +221,8 @@ export function centerWindow(window, reference) {
  * @throws Error
  */
 export function centerWindowXY(window, x, y) {
-    if (typeof window !== "object" || window.constructor.name !== "Window" ||
-            typeof x !== "number" || typeof y !== "number")
+    if (typeof window !== "object" || window.constructor.name !== "Window"
+            || typeof x !== "number" || typeof y !== "number")
         throw new Error("invalid arguments");
 
     const [ww, wh] = windowDimensions(window, true);
@@ -315,7 +315,7 @@ export function closeWindowOnEscape(window) {
 export function keyStr(event) {
     const code = event.code.replace("Key", "");
 
-    return `${event.metaKey ? "meta": ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift": ""} ${code}`;
+    return `${event.metaKey ? "meta" : ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift" : ""} ${code}`;
 }
 
 /**
@@ -347,8 +347,8 @@ export function keyLogger(element, function_) {
  * @returns {boolean}
  */
 export function addKeyboardShortcut(element, shortcut, function_) {
-    if (element === undefined || shortcut === undefined ||
-            shortcut.key === undefined || typeof function_ !== "function")
+    if (element === undefined || shortcut === undefined
+            || shortcut.key === undefined || typeof function_ !== "function")
         return false;
 
     shortcut.ctrlKey = shortcut.ctrlKey ?? false;
@@ -360,12 +360,11 @@ export function addKeyboardShortcut(element, shortcut, function_) {
         //console.debug("keyup", keyStr(event));
 
         // compare key
-        if (event.code === shortcut.key &&
+        if (event.code === shortcut.key
             // compare modifiers
-            event.ctrlKey === shortcut.ctrlKey &&
-            event.shiftKey === shortcut.shiftKey &&
-            event.altKey === shortcut.altKey) {
-
+            && event.ctrlKey === shortcut.ctrlKey
+            && event.shiftKey === shortcut.shiftKey
+            && event.altKey === shortcut.altKey) {
             // call function
             const result = function_(event);
 
@@ -449,7 +448,6 @@ export function loadJson(url, json) {
     for (const property of Object.getOwnPropertyNames(json))
         delete json[property];
 
-
     const text = loadFile(url);
 
     // convert text to json
@@ -499,7 +497,7 @@ export function flushIOQueue() {
 export function fileExists(file) {
     const stat = sys.fs.$stat(file);
 
-    return stat === null ? false : (stat.st_mode & 0x80_00 ? true : false);
+    return stat === null ? false : (Boolean(stat.st_mode & 0x80_00));
 }
 
 /**
@@ -511,7 +509,7 @@ export function fileExists(file) {
 export function dirExists(dir) {
     const stat = sys.fs.$stat(dir);
 
-    return stat === null ? false : (stat.st_mode & 0x40_00 ? true : false);
+    return stat === null ? false : (Boolean(stat.st_mode & 0x40_00));
 }
 
 /**
