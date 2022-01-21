@@ -416,7 +416,7 @@ export function sleep(delay) {
  * @param {string} file
  * @returns {Promise}
  */
-export async function play(file) {
+export async function playSound(file) {
     // try catch not needed because of the promise
     const audio = await Audio.load(file);
     await audio.play();

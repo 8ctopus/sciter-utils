@@ -88,7 +88,7 @@ document.on("ready", function() {
 
 - sciterInfo()
 - openLink()
-- play()
+- playSound()
 - sleep()
 - flushIOQueue()
 - capitalizeFirstletter()
