@@ -4,6 +4,7 @@
     "globals": [
         "__DIR__",
         "document",
+        "location",
         "Window",
         "Element",
         "Audio",
@@ -52,6 +53,15 @@
         ],
         "prefer-arrow-callback": [
             "off"
+        ],
+        "no-bitwise": [
+            "warn"
+        ],
+        "no-global-assign": [
+            "warn"
+        ],
+        "no-new": [
+            "warn"
         ]
     }
 }
