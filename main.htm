@@ -88,9 +88,9 @@ document.on("ready", function() {
     console.log(`device pixels in 1 mm - ${Utils.devicePixels("1mm")}`);
 
     console.line();
-    console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${Utils.dip_ppx("96dip", 142)}`);
-    console.log(`what is 142ppx in dip on a 142 DPI screen? - ${Utils.ppx_dip("142ppx", 142)}`);
-    console.log(`what is 10cm in ppx on a 142 DPI screen? - ${Utils.mm_ppx("100mm", 142)}`);
+    console.log(`what is 96dip (1 inch) in ppx on a 142 DPI screen? - ${Utils.dipPpx("96dip", 142)}`);
+    console.log(`what is 142ppx in dip on a 142 DPI screen? - ${Utils.ppxDip("142ppx", 142)}`);
+    console.log(`what is 10cm in ppx on a 142 DPI screen? - ${Utils.mmPpx("100mm", 142)}`);
 
     console.line();
     console.log(`monitors count - ${Utils.monitorsCount()}`);

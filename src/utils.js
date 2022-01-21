@@ -22,7 +22,7 @@ export function devicePixels(measure, axis) {
  * @returns {number} value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
-export function dip_ppx(measure, dpi) {
+export function dipPpx(measure, dpi) {
     // extract value and unit
     const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
@@ -43,7 +43,7 @@ export function dip_ppx(measure, dpi) {
  * @returns {number} value or false on failure
  * @note on a 96 DPI screen, 1 dip === 1ppx, on a 192 DPI screen, 1 dip === 2ppx
  */
-export function ppx_dip(measure, dpi) {
+export function ppxDip(measure, dpi) {
     // extract value and unit
     const [, value, unit] = measure.match(/(\d+)(\w+)/);
 
@@ -63,7 +63,7 @@ export function ppx_dip(measure, dpi) {
  * @param {number} dpi - resolution
  * @returns {number} value or false on failure
  */
-export function mm_ppx(measure, dpi) {
+export function mmPpx(measure, dpi) {
     // extract value and unit
     const [, value, unit] = measure.match(/([\d.]+)(\w+)/);
 

@@ -47,9 +47,9 @@ document.on("ready", function() {
 ### dpi
 
 - devicePixels()
-- dip_ppx()
-- ppx_dip()
-- mm_ppx()
+- dipPpx()
+- ppxDip()
+- mmPpx()
 
 ### screen and window
 
