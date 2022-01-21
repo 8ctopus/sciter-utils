@@ -264,7 +264,7 @@ export function focusWindow() {
  * Add window reload with F5
  */
 export function addReloadWindow() {
-    addKeyboardShortcut(Window.document, {
+    addKeyboardShortcut(Window.this.document, {
         key: "KeyF5",
     }, function() {
         // reload app
@@ -279,7 +279,7 @@ export function addReloadWindow() {
  * Add minimize window shortcut
  */
 export function minimizeWindowShortcut() {
-    addKeyboardShortcut(Window.document, {
+    addKeyboardShortcut(Window.this.document, {
         key: "KeyM",
         metaKey: true,
     }, function() {
@@ -303,7 +303,7 @@ export function closeWindowOnEscape(window) {
 
     addKeyboardShortcut(window.document, {
         key: "KeyESCAPE",
-    }, function(window) {
+    }, () => {
         window.close();
     });
 }
