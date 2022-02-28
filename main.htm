@@ -33,6 +33,8 @@ Logger.attach();
 // capture unhandled exceptions
 Logger.capture();
 
+let window;
+
 document.on("ready", function() {
     // redirect logger output to plaintext
     Logger.plaintext(document.$("plaintext#logger"));
@@ -52,6 +54,9 @@ document.on("ready", function() {
     // center window around position
     Utils.centerWindowXY(Window.this, 1200, 600);
 
+    // log window rectangle
+    console.debug("Window rectangle", Utils.windowRect(Window.this, true));
+
     // bring window to front
     Utils.windowToFront(Window.this);
 
@@ -68,7 +73,7 @@ document.on("ready", function() {
     });
 
     // create new window to test centering on parent
-    new Window({
+    window = new Window({
         parent: Window.this,
         url: __DIR__ + "window.htm",
         state: Window.WINDOW_SHOWN,
@@ -148,6 +153,13 @@ document.on("click", "button#link", function(_event, element) {
     Utils.openLink(element.attributes.href);
 });
 
+document.on("click", "button#move", function() {
+    const [left, top] = Utils.windowRect(Window.this, true);
+    const [, height] = Utils.windowDimensions(window, true);
+
+    window.move(left, top - height);
+});
+
 // window size in dpi
 let a = [500, 200];
 
@@ -165,6 +177,7 @@ document.on("click", "button#resize", function(_event, _element) {
 <body>
     <button href="https://duckduckgo.com" #link>search</button>
     <button #resize>resize window</button>
+    <button #move>move child window</button>
     <plaintext #logger readonly />
 </body>
 </html>
