@@ -1,6 +1,6 @@
-import * as env from "@env";
-import * as sciter from "@sciter";
-import * as sys from "@sys";
+import * as Env from "@env";
+import * as Sciter from "@sciter";
+import * as Sys from "@sys";
 
 /**
  * Convert measure in device pixels (ppx)
@@ -12,7 +12,7 @@ export function devicePixels(measure, axis) {
     if (typeof measure === "undefined")
         measure = "1in";
 
-    return sciter.devicePixels(measure, axis);
+    return Sciter.devicePixels(measure, axis);
 }
 
 /**
@@ -170,8 +170,8 @@ export function setWindowDimensions(window, width, height, ppx) {
 
     if (!ppx) {
         // convert dpi to ppx
-        width = sciter.devicePixels(width, "width");
-        height = sciter.devicePixels(height, "height");
+        width = Sciter.devicePixels(width, "width");
+        height = Sciter.devicePixels(height, "height");
     }
 
     // resize
@@ -385,7 +385,7 @@ export function openLink(url) {
     console.log(`GUI - Open link in browser - ${url}`);
 
     // open url in default browser
-    env.launch(url);
+    Env.launch(url);
 }
 
 /**
@@ -393,7 +393,7 @@ export function openLink(url) {
  * @returns {string}
  */
 export function sciterInfo() {
-    return `sciter v${sciter.VERSION} r${sciter.REVISION} quick.js v${sciter.QUICKJS_VERSION}`;
+    return `sciter v${Sciter.VERSION} r${Sciter.REVISION} quick.js v${Sciter.QUICKJS_VERSION}`;
 }
 
 /**
@@ -467,7 +467,7 @@ export function saveJson(url, json) {
 
     (async () => {
         // open file for writing
-        const file = await sys.fs.open(URL.toPath(url), "wb+");
+        const file = await Sys.fs.open(URL.toPath(url), "wb+");
 
         // write to file
         await file.write(string_);
@@ -496,7 +496,7 @@ export function flushIOQueue() {
  * @note use file, not url
  */
 export function fileExists(file) {
-    const stat = sys.fs.$stat(file);
+    const stat = Sys.fs.$stat(file);
 
     return stat === null ? false : (Boolean(stat.st_mode & 0x80_00));
 }
@@ -508,7 +508,7 @@ export function fileExists(file) {
  * @note use file, not url
  */
 export function dirExists(dir) {
-    const stat = sys.fs.$stat(dir);
+    const stat = Sys.fs.$stat(dir);
 
     return stat === null ? false : (Boolean(stat.st_mode & 0x40_00));
 }
