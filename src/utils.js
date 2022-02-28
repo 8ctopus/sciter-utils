@@ -266,8 +266,10 @@ export default class Utils {
      */
     static addReloadWindow() {
         Utils.addKeyboardShortcut(Window.this.document, {
-            key: "KeyF5",
+            key: "F5",
         }, function() {
+            console.log("Reload window...");
+
             // reload app
             Window.this.load(location.href);
 
@@ -281,7 +283,7 @@ export default class Utils {
      */
     static minimizeWindowShortcut() {
         Utils.addKeyboardShortcut(Window.this.document, {
-            key: "KeyM",
+            key: "M",
             metaKey: true,
         }, function() {
             console.log("Minimize window...");
@@ -303,7 +305,7 @@ export default class Utils {
             throw new Error("invalid arguments");
 
         Utils.addKeyboardShortcut(window.document, {
-            key: "KeyESCAPE",
+            key: "Escape",
         }, () => {
             window.close();
         });
@@ -315,9 +317,7 @@ export default class Utils {
      * @returns {string}
      */
     static keyStr(event) {
-        const code = event.code.replace("Key", "");
-
-        return `${event.metaKey ? "meta" : ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift" : ""} ${code}`;
+        return `${event.metaKey ? "meta" : ""} ${event.ctrlKey ? "ctrl" : ""} ${event.altKey ? "alt" : ""} ${event.shiftKey ? "shift" : ""} ${event.code}`;
     }
 
     /**
@@ -331,7 +331,7 @@ export default class Utils {
             return false;
 
         element.on("keyup", function(event) {
-            // call function
+            // call callback
             const result = function_(event);
 
             if (result !== undefined)
@@ -359,7 +359,7 @@ export default class Utils {
         shortcut.metaKey = shortcut.metaKey ?? false;
 
         element.on("keyup", function(event) {
-            //console.debug("keyup", keyStr(event));
+            //console.debug("keyup", Utils.keyStr(event));
 
             // compare key
             if (event.code === shortcut.key
@@ -367,7 +367,8 @@ export default class Utils {
                 && event.ctrlKey === shortcut.ctrlKey
                 && event.shiftKey === shortcut.shiftKey
                 && event.altKey === shortcut.altKey) {
-                // call function
+
+                // call callback
                 const result = function_(event);
 
                 if (result !== undefined)
