@@ -522,4 +522,24 @@ export default class Utils {
     static capitalizeFirstLetter(string_) {
         return string_.charAt(0).toUpperCase() + string_.slice(1);
     }
+
+    /**
+     * Get directory separator
+     * @returns {string}
+     * @throws Error when platform is unknown
+     */
+    static getSeparator() {
+        switch (Env.PLATFORM) {
+            case "Windows":
+                return "\\";
+
+            case "Linux":
+            case "OSX":
+            case "Android":
+                return "/";
+
+            default:
+                throw new Error(`unknown platform ${Env.PLATFORM}`);
+        }
+    }
 }

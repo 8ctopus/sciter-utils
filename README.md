@@ -92,3 +92,4 @@ document.on("ready", function() {
 - sleep()
 - flushIOQueue()
 - capitalizeFirstletter()
+- getSeparator()
