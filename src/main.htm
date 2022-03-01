@@ -7,7 +7,7 @@
 <title>sciter utils demo</title>
 <style>
 
-@import url(node_modules/sciter-logger/src/logger.css);
+@import url(../node_modules/sciter-logger/src/logger.css);
 
 body {
     border-spacing: 1em;
@@ -20,8 +20,8 @@ plaintext#logger {
 </style>
 <script type="module">
 
-import Logger from "node_modules/sciter-logger/src/logger.js";
-import Utils from "src/utils.js";
+import Logger from "../node_modules/sciter-logger/src/logger.js";
+import Utils from "utils.js";
 
 // initialize logger
 Logger.init();
@@ -117,7 +117,7 @@ document.on("ready", function() {
         b: 1,
     };
 
-    const url = __DIR__ + "test/test.json";
+    const url = __DIR__ + "../test/test.json";
 
     Utils.loadJson(url, json);
     console.debug("loadJson", json);

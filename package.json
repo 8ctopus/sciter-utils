@@ -2,7 +2,7 @@
   "name": "sciter-utils",
   "version": "0.9.0",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
-  "main": "main.htm",
+  "main": "src/main.htm",
   "scripts": {
     "install-sdk": "node ./node_modules/sciter-sandbox/scripts/install.mjs cleanup",
     "sdk-version": "node ./node_modules/sciter-sandbox/scripts/version.mjs",
