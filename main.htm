@@ -38,12 +38,6 @@ document.on("ready", function() {
     // redirect logger output to plaintext
     Logger.plaintext(document.$("plaintext#logger"));
 
-    // log sciter version
-    console.debug(Utils.sciterInfo());
-
-    // add support for F5 reload
-    Utils.addReloadWindow();
-
     // close window on escape key press
     Utils.closeWindowOnEscape(Window.this);
 
@@ -55,9 +49,6 @@ document.on("ready", function() {
 
     // log window rectangle
     console.debug("Window rectangle", Utils.windowRect(Window.this, true));
-
-    // bring window to front
-    Utils.windowToFront(Window.this);
 
     // add minimize window shortcut
     Utils.minimizeWindowShortcut();
