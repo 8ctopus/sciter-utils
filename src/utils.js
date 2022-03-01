@@ -425,33 +425,35 @@ export default class Utils {
     }
 
     /**
-     * Load string from file
+     * Get text from url
      * @param {string} url
      * @returns {string}
-     * @throws Error if load file fails
+     * @throws Error if get fails
      */
-    static loadFile(url) {
+    static getUrl(url) {
         // get url content
-        const result = fetch(url, {sync: true});
+        const result = fetch(url, {
+            sync: true
+        });
 
         if (result.ok)
             return result.text();
 
-        throw new Error(`Load file - result ${result.status} - url ${url}`);
+        throw new Error(`Get url - result - ${result.status} - url - ${url}`);
     }
 
     /**
      * Load json from file
      * @param {string} url
      * @param {object} json - [in,out]
-     * @throws Error if load file fails
+     * @throws Error if json cannot be parsed
      */
     static loadJson(url, json) {
         // clear json object
         for (const property of Object.getOwnPropertyNames(json))
             delete json[property];
 
-        const text = Utils.loadFile(url);
+        const text = Utils.getUrl(url);
 
         // convert text to json
         Object.assign(json, JSON.parse(text));

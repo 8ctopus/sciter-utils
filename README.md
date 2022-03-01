@@ -75,7 +75,6 @@ document.on("ready", function() {
 
 ### json
 
-- loadFile()
 - loadJson()
 - saveJson()
 
