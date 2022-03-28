@@ -107,11 +107,12 @@ export default class Utils {
 
     /**
      * Get screen dimensions
-     * @returns {Array} [width, height] in ppx
+     * @param {boolean, undefined} asPPX - true coordinates are in physical device pixels (default), false in CSS pixels
+     * @returns {Array} [width, height]
      */
-    static screenDimensions() {
+    static screenDimensions(asPPX) {
         // get screen dimensions
-        const [w, h] = Window.this.screenBox("frame", "dimension");
+        const [w, h] = Window.this.screenBox("frame", "dimension", asPPX);
 
         //console.debug("screen dimensions", w, h);
 
@@ -120,17 +121,20 @@ export default class Utils {
 
     /**
      * Get window rectangle
-     * @param {Window} window
-     * @param {boolean} ppx - ppx true, dpi false
-     * @returns {Array} [left, top, width, height]
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
+     * @param {boolean, undefined} asPPX - true coordinates are in ppx (default), false in dpi
+     * @return Array} [left, top, width, height]
      * @throws Error
      */
-    static windowRect(window, ppx) {
-        if (typeof window !== "object" || window.constructor.name !== "Window" || typeof ppx !== "boolean")
+    static windowRect(window, asPPX) {
+        if (!window)
+            window = Window.this;
+        else
+        if (typeof window !== "object" || window.constructor.name !== "Window")
             throw new Error("invalid arguments");
 
         // get window dimensions with border
-        const [wx, wy, ww, wh] = window.box("rectw", "border", "screen", ppx);
+        const [wx, wy, ww, wh] = window.box("rectw", "border", "screen", asPPX);
 
         //console.debug("window rect", wx, wy, ww, wh);
 
@@ -139,15 +143,13 @@ export default class Utils {
 
     /**
      * Get window dimensions
-     * @param {Window} window
-     * @param {boolean} ppx - ppx true, dpi false
-     * @returns {Array} [int,int]
-     * @throws Error
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
+     * @param {boolean, undefined} asPPX - true coordinates are in ppx (default), false in dpi
+     * @return {Array} [width, height]
      */
-    static windowDimensions(window, ppx) {
+    static windowDimensions(window, asPPX) {
         // get window dimensions with border
-        const [ww, wh] = Utils.windowRect(window, ppx).slice(2, 4);
-
+        const [wx, wy, ww, wh] = Utils.windowRect(window, asPPX);
         //console.debug("window dimensions", ww, wh);
 
         return [ww, wh];
@@ -179,16 +181,25 @@ export default class Utils {
         Window.this.move(rect[0], rect[1], width, height);
     }
 
+    // todo -oNiki/David: reference must be enum strict value or string (to preserver backward compatibility)
     /**
      * Center window on screen
-     * @param {Window} window
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
      * @param {string} reference - ["screen", "parent"]
+     * @param {Length, undefined} xOffset - optional offset to apply to horizontal position
+     * @param {Length, undefined} yOffset - optional offset to apply to vertical position
      * @throws Error
      */
-    static centerWindow(window, reference) {
-        if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
+    static centerWindow(window, reference, xOffset, yOffset) {
+        if (!window)
+            window = Window.this;
+        else
+        if (typeof window !== "object" || window.constructor.name !== "Window")
             throw new Error("invalid arguments");
 
+        if (typeof reference !== "string")
+            throw new Error("invalid arguments");
+            
         let centerX;
         let centerY;
 
@@ -205,46 +216,72 @@ export default class Utils {
             //console.debug("center window on screen");
 
             // get screen dimensions
-            const [sw, sh] = Utils.screenDimensions();
+            const [sw, sh] = Utils.screenDimensions(true);
 
             // calculate screen center
             centerX = sw / 2;
             centerY = sh / 2;
         }
 
+        // apply optional horizontal offset
+        if (xOffset) {
+            // convert to ppx
+            const offset = xOffset.valueOf();
+            if (offset)
+                centerX += offset;
+        }
+
+        // apply optional vertical offset
+        if (yOffset) {
+            // convert to ppx
+            const offset = yOffset.valueOf();
+            if (offset)
+                centerY += offset;
+        }
+
+        //console.debug(`center (${centerX}, ${centerY})`, xOffset, yOffset);
+
         Utils.centerWindowXY(window, centerX, centerY);
     }
 
     /**
      * Center window around position
-     * @param {Window} window
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
      * @param {number} x - x center in ppx
      * @param {number} y - y center in ppx
-     * @throws Error
+     * @return void
      */
     static centerWindowXY(window, x, y) {
-        if (typeof window !== "object" || window.constructor.name !== "Window"
-                || typeof x !== "number" || typeof y !== "number")
-            throw new Error("invalid arguments");
+       if (!window)
+           window = Window.this;
+       else
+       if (typeof window !== "object" || window.constructor.name !== "Window")
+           throw new Error("invalid arguments");
 
-        const [ww, wh] = Utils.windowDimensions(window, true);
+       if (typeof x !== "number" || typeof y !== "number")
+           throw new Error("invalid arguments");
 
-        // calculate position
-        const left = x - (ww / 2);
-        const top = y - (wh / 2);
+       const [ww, wh] = Utils.windowDimensions(window, true);
 
-        //console.debug("center window", left, top);
+       // calculate position
+       const left = x - (ww / 2);
+       const top = y - (wh / 2);
 
-        // move window
-        window.move(left, top);
-    }
+       //console.debug("center window", left, top);
+
+       // move window
+       window.move(left, top);
+   }
 
     /**
      * Bring window to front
-     * @param {Window} window
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
      * @throws Error
      */
     static windowToFront(window) {
+        if (!window)
+           window = Window.this;
+        else
         if (typeof window !== "object" || window.constructor.name !== "Window")
             throw new Error("invalid arguments");
 
@@ -297,10 +334,13 @@ export default class Utils {
 
     /**
      * Close window on escape
-     * @param {Window} window
+     * @param {Window, undefined} window - if no Window is provided Window.this will be used
      * @throws Error
      */
     static closeWindowOnEscape(window) {
+        if (!window)
+           window = Window.this;
+        else
         if (typeof window !== "object" || window.constructor.name !== "Window")
             throw new Error("invalid arguments");
 
