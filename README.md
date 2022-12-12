@@ -92,3 +92,5 @@ document.on("ready", function() {
 - flushIOQueue()
 - capitalizeFirstletter()
 - getSeparator()
+- arrayBufferToHexStr()
+- randomStr()

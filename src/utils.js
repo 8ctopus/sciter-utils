@@ -545,4 +545,28 @@ export default class Utils {
                 throw new Error(`unknown platform ${Env.PLATFORM}`);
         }
     }
+
+    /**
+     * Convert array buffer to hex string
+     * @param {ArrayBuffer} buffer
+     * @returns {string}
+     */
+    static arrayBufferToHexStr(buffer) {
+        return [...new Uint8Array(buffer)]
+            .map(x => x.toString(16).padStart(2, '0'))
+            .join('');
+    }
+
+    /**
+     * Create random string
+     * @param {number} length
+     * @return {string}
+     */
+    static randomStr(length) {
+        let buffer = new ArrayBuffer(length / 2);
+
+        Sys.random(buffer);
+
+        return Utils.arrayBufferToHexStr(buffer);
+    }
 }

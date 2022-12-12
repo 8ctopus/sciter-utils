@@ -137,6 +137,9 @@ document.on("ready", function() {
 
     for (const item of items)
         console.log(`dir exists ${item}`, Utils.dirExists(item));
+
+    // test random string
+    console.log("random string", Utils.randomStr(10));
 });
 
 document.on("click", "button#link", function(_event, element) {
