@@ -433,7 +433,7 @@ export default class Utils {
     static getUrl(url) {
         // get url content
         const result = fetch(url, {
-            sync: true
+            sync: true,
         });
 
         if (result.ok)
@@ -553,17 +553,17 @@ export default class Utils {
      */
     static arrayBufferToHexStr(buffer) {
         return [...new Uint8Array(buffer)]
-            .map(x => x.toString(16).padStart(2, '0'))
-            .join('');
+            .map(x => x.toString(16).padStart(2, "0"))
+            .join("");
     }
 
     /**
      * Create random string
      * @param {number} length
-     * @return {string}
+     * @returns {string}
      */
     static randomStr(length) {
-        let buffer = new ArrayBuffer(length / 2);
+        const buffer = new ArrayBuffer(length / 2);
 
         Sys.random(buffer);
 
