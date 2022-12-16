@@ -569,4 +569,21 @@ export default class Utils {
 
         return Utils.arrayBufferToHexStr(buffer);
     }
+
+    /**
+     * Create uuid
+     * @return {string}
+     */
+    static uuid() {
+        // create random string
+        let str = Utils.randomStr(32);
+
+        // split into 5 parts
+        let chunks = str.match(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/);
+
+        // remove first element
+        chunks.shift();
+
+        return chunks.join('-');
+    }
 }

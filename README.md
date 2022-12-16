@@ -94,3 +94,4 @@ document.on("ready", function() {
 - getSeparator()
 - arrayBufferToHexStr()
 - randomStr()
+- uuid() - https://developer.mozilla.org/en-US/docs/Glossary/UUID
