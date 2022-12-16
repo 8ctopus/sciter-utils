@@ -1,6 +1,6 @@
 {
   "name": "sciter-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
   "main": "src/main.htm",
   "scripts": {
