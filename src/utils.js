@@ -200,8 +200,7 @@ export default class Utils {
 
             centerX = px + (pw / 2);
             centerY = py + (ph / 2);
-        }
-        else {
+        } else {
             //console.debug("center window on screen");
 
             // get screen dimensions
@@ -367,7 +366,6 @@ export default class Utils {
                 && event.ctrlKey === shortcut.ctrlKey
                 && event.shiftKey === shortcut.shiftKey
                 && event.altKey === shortcut.altKey) {
-
                 // call callback
                 const result = function_(event);
 
@@ -572,18 +570,18 @@ export default class Utils {
 
     /**
      * Create uuid
-     * @return {string}
+     * @returns {string}
      */
     static uuid() {
         // create random string
-        let str = Utils.randomStr(32);
+        const str = Utils.randomStr(32);
 
         // split into 5 parts
-        let chunks = str.match(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/);
+        const chunks = str.match(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/);
 
         // remove first element
         chunks.shift();
 
-        return chunks.join('-');
+        return chunks.join("-");
     }
 }
