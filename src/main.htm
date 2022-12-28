@@ -44,8 +44,10 @@ document.on("ready", function() {
     // center window on screen
     Utils.centerWindow(Window.this, "screen");
 
+    Utils.sleep(500);
+
     // center window around position
-    Utils.centerWindowXY(Window.this, 1200, 600);
+    Utils.centerWindowXY(Window.this, 1300, 600);
 
     // log window rectangle
     console.debug("Window rectangle", Utils.windowRect(Window.this, true));
