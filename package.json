@@ -2,7 +2,6 @@
   "name": "sciter-utils",
   "version": "1.0.4",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
-  "main": "main.htm",
   "scripts": {
     "install-sdk": "node ./node_modules/sciter-sandbox/scripts/install.mjs cleanup",
     "sdk-version": "node ./node_modules/sciter-sandbox/scripts/version.mjs",
@@ -17,6 +16,9 @@
     "email": "hello@octopuslabs.io"
   },
   "license": "MIT",
+  "files": [
+    "src/*"
+  ],
   "bugs": {
     "url": "https://github.com/8ctopus/sciter-utils/issues"
   },
