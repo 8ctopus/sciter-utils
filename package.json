@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "files": [
-    "src/*"
+    "src"
   ],
   "bugs": {
     "url": "https://github.com/8ctopus/sciter-utils/issues"
