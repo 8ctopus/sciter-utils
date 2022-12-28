@@ -122,8 +122,8 @@ export default class Utils {
      * Get window rectangle
      * @param {Window} window
      * @param {boolean} ppx - ppx true, dpi false
-     * @returns {Array} [left, top, width, height]
      * @throws Error
+     * @returns {Array} [left, top, width, height]
      */
     static windowRect(window, ppx) {
         if (typeof window !== "object" || window.constructor.name !== "Window" || typeof ppx !== "boolean")
@@ -141,8 +141,8 @@ export default class Utils {
      * Get window dimensions
      * @param {Window} window
      * @param {boolean} ppx - ppx true, dpi false
-     * @returns {Array} [int,int]
      * @throws Error
+     * @returns {Array} [int,int]
      */
     static windowDimensions(window, ppx) {
         // get window dimensions with border
@@ -184,6 +184,7 @@ export default class Utils {
      * @param {Window} window
      * @param {string} reference - ["screen", "parent"]
      * @throws Error
+     * @returns void
      */
     static centerWindow(window, reference) {
         if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
@@ -220,6 +221,7 @@ export default class Utils {
      * @param {number} x - x center in ppx
      * @param {number} y - y center in ppx
      * @throws Error
+     * @returns void
      */
     static centerWindowXY(window, x, y) {
         if (typeof window !== "object" || window.constructor.name !== "Window"
@@ -242,6 +244,7 @@ export default class Utils {
      * Bring window to front
      * @param {Window} window
      * @throws Error
+     * @returns void
      */
     static windowToFront(window) {
         if (typeof window !== "object" || window.constructor.name !== "Window")
@@ -425,8 +428,8 @@ export default class Utils {
     /**
      * Get text from url
      * @param {string} url
-     * @returns {string}
      * @throws Error if get fails
+     * @returns {string}
      */
     static getUrl(url) {
         // get url content
@@ -526,8 +529,8 @@ export default class Utils {
 
     /**
      * Get directory separator
-     * @returns {string}
      * @throws Error when platform is unknown
+     * @returns {string}
      */
     static getSeparator() {
         switch (Env.PLATFORM) {
