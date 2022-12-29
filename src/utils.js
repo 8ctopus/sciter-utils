@@ -541,17 +541,24 @@ export default class Utils {
     /**
      * Split file path into composing elements
      * @param  {string} path
-     * @return {array}
+     * @return {json}
      */
     static splitPath(path) {
-        const [dirname, basename] = Sys.fs.splitpath(path);
+        let dirname = "";
+        let basename = "";
+
+        if (!path.includes(this.getSeparator())) {
+            basename = path;
+        } else {
+            [dirname, basename] = Sys.fs.splitpath(path);
+        }
 
         const extension = basename.slice((Math.max(0, basename.lastIndexOf(".")) || Infinity) + 1);
 
         return {
-            dirname,
-            basename,
-            extension,
+            dirname: dirname,
+            basename: basename,
+            extension: extension,
         };
     }
 
