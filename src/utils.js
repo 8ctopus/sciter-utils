@@ -184,7 +184,7 @@ export default class Utils {
      * @param {Window} window
      * @param {string} reference - ["screen", "parent"]
      * @throws Error
-     * @returns void
+     * @returns {void}
      */
     static centerWindow(window, reference) {
         if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
@@ -221,7 +221,7 @@ export default class Utils {
      * @param {number} x - x center in ppx
      * @param {number} y - y center in ppx
      * @throws Error
-     * @returns void
+     * @returns {void}
      */
     static centerWindowXY(window, x, y) {
         if (typeof window !== "object" || window.constructor.name !== "Window"
@@ -244,7 +244,7 @@ export default class Utils {
      * Bring window to front
      * @param {Window} window
      * @throws Error
-     * @returns void
+     * @returns {void}
      */
     static windowToFront(window) {
         if (typeof window !== "object" || window.constructor.name !== "Window")
@@ -540,25 +540,24 @@ export default class Utils {
 
     /**
      * Split file path into composing elements
-     * @param  {string} path
-     * @return {json}
+     * @param {string} path
+     * @returns {json}
      */
     static splitPath(path) {
         let dirname = "";
         let basename = "";
 
-        if (!path.includes(this.getSeparator())) {
+        if (!path.includes(this.getSeparator()))
             basename = path;
-        } else {
+        else
             [dirname, basename] = Sys.fs.splitpath(path);
-        }
 
-        const extension = basename.slice((Math.max(0, basename.lastIndexOf(".")) || Infinity) + 1);
+        const extension = basename.slice((Math.max(0, basename.lastIndexOf(".")) || Number.POSITIVE_INFINITY) + 1);
 
         return {
-            dirname: dirname,
-            basename: basename,
-            extension: extension,
+            dirname,
+            basename,
+            extension,
         };
     }
 
