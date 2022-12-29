@@ -73,15 +73,17 @@ document.on("ready", function() {
 - addKeyboardShortcut()
 - keyStr()
 
-### json
-
-- loadJson()
-- saveJson()
-
 ### files
 
 - fileExists()
 - dirExists()
+- getSeparator()
+- splitPath()
+
+### json
+
+- loadJson()
+- saveJson()
 
 ### misc.
 
@@ -91,7 +93,6 @@ document.on("ready", function() {
 - sleep()
 - flushIOQueue()
 - capitalizeFirstletter()
-- getSeparator()
 - arrayBufferToHexStr()
 - randomStr()
 - uuid() - https://developer.mozilla.org/en-US/docs/Glossary/UUID

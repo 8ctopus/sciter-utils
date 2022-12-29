@@ -140,6 +140,8 @@ document.on("ready", function() {
     for (const item of items)
         console.log(`dir exists ${item}`, Utils.dirExists(item));
 
+    console.log(`split path`, Utils.splitPath(url));
+
     // test random string
     console.log("random string", Utils.randomStr(10));
 

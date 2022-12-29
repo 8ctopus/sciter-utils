@@ -519,15 +519,6 @@ export default class Utils {
     }
 
     /**
-     * Capitalize first letter
-     * @param {string} string_
-     * @returns {string}
-     */
-    static capitalizeFirstLetter(string_) {
-        return string_.charAt(0).toUpperCase() + string_.slice(1);
-    }
-
-    /**
      * Get directory separator
      * @throws Error when platform is unknown
      * @returns {string}
@@ -545,6 +536,32 @@ export default class Utils {
             default:
                 throw new Error(`unknown platform ${Env.PLATFORM}`);
         }
+    }
+
+    /**
+     * Split file path into composing elements
+     * @param  {string} path
+     * @return {array}
+     */
+    static splitPath(path) {
+        const [dirname, basename] = Sys.fs.splitpath(path);
+
+        const extension = basename.slice((Math.max(0, basename.lastIndexOf(".")) || Infinity) + 1);
+
+        return {
+            dirname,
+            basename,
+            extension,
+        };
+    }
+
+    /**
+     * Capitalize first letter
+     * @param {string} string_
+     * @returns {string}
+     */
+    static capitalizeFirstLetter(string_) {
+        return string_.charAt(0).toUpperCase() + string_.slice(1);
     }
 
     /**
