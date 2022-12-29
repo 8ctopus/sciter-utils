@@ -140,7 +140,16 @@ document.on("ready", function() {
     for (const item of items)
         console.log(`dir exists ${item}`, Utils.dirExists(item));
 
-    console.log(`split path`, Utils.splitPath(url));
+    const paths = [
+        "test/.gitignore",
+        "test/bin",
+        "test/bin/",
+        "K:\\dev\\github\\sciter-utils\\package.json",
+        "/usr/local/bin/git",
+    ];
+
+    for (const item of paths)
+        console.log(`split path ${item}`, Utils.splitPath(item));
 
     // test random string
     console.log("random string", Utils.randomStr(10));
