@@ -1,6 +1,6 @@
 {
   "name": "sciter-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Useful functions for [sciter.js](https://sciter.com/).",
   "scripts": {
     "install-sdk": "node ./node_modules/sciter-sandbox/scripts/install.mjs cleanup",
