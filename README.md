@@ -44,6 +44,8 @@ document.on("ready", function() {
 
 ## functions
 
+[Full documentation](documentation.md)
+
 ### dpi
 
 - devicePixels()
@@ -97,3 +99,9 @@ document.on("ready", function() {
 - randomStr()
 - uuid() - https://developer.mozilla.org/en-US/docs/Glossary/UUID
 - debounce()
+
+## generate doc
+
+```sh
+./node_modules/.bin/jsdoc2md --configure jsdoc.json src/utils.js >> documentation.md
+```
