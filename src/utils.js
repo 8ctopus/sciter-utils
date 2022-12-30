@@ -612,4 +612,32 @@ export default class Utils {
 
         return chunks.join("-");
     }
+
+    static #debounceMap = new Map();
+
+    /**
+     * Debounce
+     * @param  {Function} callback
+     * @param  {number}   time in milliseconds
+     * @param  {bool}     cancel
+     * @return {void}
+     */
+    static debounce(callback, time, cancel = false) {
+        if (typeof callback !== "function")
+            throw new Error("callback must be a function");
+
+        if (typeof time !== "number")
+            throw new Error("time must be a number");
+
+        if (this.#debounceMap.has(callback.name)) {
+            // cancel previous timeout
+            clearTimeout(this.#debounceMap.get(callback.name));
+            this.#debounceMap.delete(callback.name);
+        }
+
+        if (!cancel) {
+            // set new timeout
+            this.#debounceMap.set(callback.name, setTimeout(callback, time));
+        }
+    }
 }

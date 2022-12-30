@@ -96,3 +96,4 @@ document.on("ready", function() {
 - arrayBufferToHexStr()
 - randomStr()
 - uuid() - https://developer.mozilla.org/en-US/docs/Glossary/UUID
+- debounce()

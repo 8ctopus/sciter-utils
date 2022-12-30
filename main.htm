@@ -156,7 +156,25 @@ document.on("ready", function() {
     console.log("random string", Utils.randomStr(10));
 
     console.log("uuid", Utils.uuid());
+
+    Utils.debounce(debounceTest1, 200);
+    Utils.debounce(debounceTest1, 200);
+    Utils.debounce(debounceTest1, 200);
+    Utils.debounce(debounceTest1, 200);
+
+    Utils.debounce(debounceTest2, 200);
+    Utils.debounce(debounceTest2, 200);
+    Utils.debounce(debounceTest2, 200);
+    Utils.debounce(debounceTest2, 200, true);
 });
+
+function debounceTest1() {
+    console.log("debounceTest1");
+}
+
+function debounceTest2() {
+    console.log("debounceTest2");
+}
 
 document.on("click", "button#link", function(_event, element) {
     Utils.openLink(element.attributes.href);
