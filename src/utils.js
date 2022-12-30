@@ -440,7 +440,7 @@ export default class Utils {
         if (result.ok)
             return result.text();
 
-        throw new Error(`Get url - result - ${result.status} - url - ${url}`);
+        throw new Error(`Get url - FAILED - ${result.status} - url - ${url}`);
     }
 
     /**
@@ -448,6 +448,7 @@ export default class Utils {
      * @param {string} url
      * @param {object} json - [in,out]
      * @throws Error if json cannot be parsed
+     * @returns {void}
      */
     static loadJson(url, json) {
         // clear json object
@@ -465,6 +466,7 @@ export default class Utils {
      * @param {string} url
      * @param {object} json
      * @throws Error if save file fails
+     * @returns {void}
      */
     static saveJson(url, json) {
         // convert json to string
