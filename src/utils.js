@@ -10,7 +10,7 @@ export default class Utils {
      * @returns {number}
      */
     static devicePixels(measure, axis) {
-        if (typeof measure === "undefined")
+        if (measure === undefined)
             measure = "1in";
 
         return Sciter.devicePixels(measure, axis);
@@ -355,10 +355,10 @@ export default class Utils {
                 || shortcut.key === undefined || typeof function_ !== "function")
             return false;
 
-        shortcut.ctrlKey = shortcut.ctrlKey ?? false;
-        shortcut.shiftKey = shortcut.shiftKey ?? false;
-        shortcut.altKey = shortcut.altKey ?? false;
-        shortcut.metaKey = shortcut.metaKey ?? false;
+        shortcut.ctrlKey ??= false;
+        shortcut.shiftKey ??= false;
+        shortcut.altKey ??= false;
+        shortcut.metaKey ??= false;
 
         element.on("keyup", function(event) {
             //console.debug("keyup", Utils.keyStr(event));
@@ -549,10 +549,10 @@ export default class Utils {
         let dirname = "";
         let basename = "";
 
-        if (!path.includes(this.getSeparator()))
-            basename = path;
-        else
+        if (path.includes(this.getSeparator()))
             [dirname, basename] = Sys.fs.splitpath(path);
+        else
+            basename = path;
 
         const extension = basename.slice((Math.max(0, basename.lastIndexOf(".")) || Number.POSITIVE_INFINITY) + 1);
 
@@ -617,10 +617,11 @@ export default class Utils {
 
     /**
      * Debounce
-     * @param  {Function} callback
-     * @param  {number}   time in milliseconds
-     * @param  {bool}     cancel
-     * @return {void}
+     * @param {Function} callback
+     * @param {number} time - in milliseconds
+     * @param {boolean} cancel
+     * @returns {void}
+     * @throws Error
      */
     static debounce(callback, time, cancel = false) {
         if (typeof callback !== "function")
