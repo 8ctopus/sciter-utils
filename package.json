@@ -26,6 +26,6 @@
   "devDependencies": {
     "jsdoc-to-markdown": "^8.0.0",
     "sciter-logger": "^1.1.3",
-    "sciter-sandbox": "^1.1.12"
+    "sciter-sandbox": "^1.5.0"
   }
 }
