@@ -38,6 +38,8 @@ document.on("ready", function() {
     // redirect logger output to plaintext
     Logger.plaintext(document.$("plaintext#logger"));
 
+    console.log(Utils.sciterInfo());
+
     // close window on escape key press
     Utils.closeWindowOnEscape(Window.this);
 
