@@ -396,7 +396,9 @@ export default class Utils {
      * @returns {string}
      */
     static sciterInfo() {
-        return `sciter v${Sciter.VERSION} r${Sciter.REVISION} quick.js v${Sciter.QUICKJS_VERSION}`;
+        const gfx = Window.this.graphicsBackend ?? '';
+
+        return `sciter v${Sciter.VERSION} r${Sciter.REVISION} quick.js v${Sciter.QUICKJS_VERSION} ${gfx}`;
     }
 
     /**
