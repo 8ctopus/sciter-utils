@@ -107,11 +107,14 @@ export default class Utils {
 
     /**
      * Get screen dimensions
-     * @param {boolean} ppx - ppx true, dpi false
+     * @param {boolean,undefined} ppx - ppx true, dpi false
      * @throws Error
      * @returns {Array} [width, height]
      */
     static screenDimensions(ppx) {
+        if (ppx === undefined)
+            ppx = false;
+
         if (typeof ppx !== "boolean")
             throw new Error("invalid argument");
 
