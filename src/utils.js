@@ -107,14 +107,18 @@ export default class Utils {
 
     /**
      * Get screen dimensions
-     * @returns {Array} [width, height] in ppx
+     * @param {boolean} ppx - ppx true, dpi false
+     * @throws Error
+     * @returns {Array} [width, height]
      */
-    static screenDimensions() {
+    static screenDimensions(ppx) {
+        if (typeof ppx !== "boolean")
+            throw new Error("invalid argument");
+
         // get screen dimensions
-        const [w, h] = Window.this.screenBox("frame", "dimension");
+        const [w, h] = Window.this.screenBox("frame", "dimension", ppx);
 
         //console.debug("screen dimensions", w, h);
-
         return [w, h];
     }
 
@@ -183,10 +187,12 @@ export default class Utils {
      * Center window on screen
      * @param {Window} window
      * @param {string} reference - ["screen", "parent"]
+     * @param {number|undefined} xOffset - optional horizontal offset
+     * @param {number|undefined} yOffset - optional vertical offset
      * @throws Error
      * @returns {void}
      */
-    static centerWindow(window, reference) {
+    static centerWindow(window, reference, xOffset, yOffset) {
         if (typeof window !== "object" || window.constructor.name !== "Window" || typeof reference !== "string")
             throw new Error("invalid arguments");
 
@@ -205,11 +211,29 @@ export default class Utils {
             //console.debug("center window on screen");
 
             // get screen dimensions
-            const [sw, sh] = Utils.screenDimensions();
+            const [sw, sh] = Utils.screenDimensions(true);
 
             // calculate screen center
             centerX = sw / 2;
             centerY = sh / 2;
+        }
+
+        // horizontal offset
+        if (xOffset) {
+            // convert to ppx
+            const offset = xOffset.valueOf();
+
+            if (offset)
+                centerX += offset;
+        }
+
+        // vertical offset
+        if (yOffset) {
+            // convert to ppx
+            const offset = yOffset.valueOf();
+
+            if (offset)
+                centerY += offset;
         }
 
         Utils.centerWindowXY(window, centerX, centerY);
