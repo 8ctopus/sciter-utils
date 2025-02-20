@@ -1,5 +1,8 @@
 # sciter utils
 
+![latest version](https://img.shields.io/npm/v/sciter-utils.svg)
+![downloads](https://img.shields.io/npm/dy/sciter-utils.svg)
+
 Useful functions for [sciter.js](https://sciter.com/).
 
 ## demo
