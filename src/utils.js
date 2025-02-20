@@ -420,8 +420,8 @@ export default class Utils {
      * @returns {string}
      */
     static sciterInfo() {
-        const gfx = Window.this.graphicsBackend ?? '';
-        const cpu = Env.CPU ?? '';
+        const gfx = Window.this.graphicsBackend ?? "";
+        const cpu = Env.CPU ?? "";
 
         return `sciter ${cpu} v${Sciter.VERSION} r${Sciter.REVISION} quick.js v${Sciter.QUICKJS_VERSION} ${gfx}`;
     }
