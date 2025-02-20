@@ -19,7 +19,7 @@
 <dt><a href="#logMonitors">logMonitors()</a></dt>
 <dd><p>Log monitors info</p>
 </dd>
-<dt><a href="#screenDimensions">screenDimensions()</a> ⇒ <code>Array</code></dt>
+<dt><a href="#screenDimensions">screenDimensions(ppx)</a> ⇒ <code>Array</code></dt>
 <dd><p>Get screen dimensions</p>
 </dd>
 <dt><a href="#windowRect">windowRect(window, ppx)</a> ⇒ <code>Array</code></dt>
@@ -31,7 +31,7 @@
 <dt><a href="#setWindowDimensions">setWindowDimensions(window, width, height, ppx)</a></dt>
 <dd><p>Set window dimensions</p>
 </dd>
-<dt><a href="#centerWindow">centerWindow(window, reference)</a> ⇒ <code>void</code></dt>
+<dt><a href="#centerWindow">centerWindow(window, reference, xOffset, yOffset)</a> ⇒ <code>void</code></dt>
 <dd><p>Center window on screen</p>
 </dd>
 <dt><a href="#centerWindowXY">centerWindowXY(window, x, y)</a> ⇒ <code>void</code></dt>
@@ -181,11 +181,20 @@ Log monitors info
 **Kind**: global function  
 <a name="screenDimensions"></a>
 
-## screenDimensions() ⇒ <code>Array</code>
+## screenDimensions(ppx) ⇒ <code>Array</code>
 Get screen dimensions
 
 **Kind**: global function  
-**Returns**: <code>Array</code> - [width, height] in ppx  
+**Returns**: <code>Array</code> - [width, height]  
+**Throws**:
+
+- Error
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ppx | <code>boolean</code> | ppx true, dpi false |
+
 <a name="windowRect"></a>
 
 ## windowRect(window, ppx) ⇒ <code>Array</code>
@@ -240,7 +249,7 @@ Set window dimensions
 
 <a name="centerWindow"></a>
 
-## centerWindow(window, reference) ⇒ <code>void</code>
+## centerWindow(window, reference, xOffset, yOffset) ⇒ <code>void</code>
 Center window on screen
 
 **Kind**: global function  
@@ -253,6 +262,8 @@ Center window on screen
 | --- | --- | --- |
 | window | <code>Window</code> |  |
 | reference | <code>string</code> | ["screen", "parent"] |
+| xOffset | <code>number</code> \| <code>undefined</code> | optional horizontal offset |
+| yOffset | <code>number</code> \| <code>undefined</code> | optional vertical offset |
 
 <a name="centerWindowXY"></a>
 
@@ -540,10 +551,14 @@ Create uuid
 Debounce
 
 **Kind**: global function  
+**Throws**:
+
+- Error
+
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | callback | <code>function</code> |  |  |
 | time | <code>number</code> |  | in milliseconds |
-| cancel | <code>bool</code> | <code>false</code> |  |
+| cancel | <code>boolean</code> | <code>false</code> |  |
 

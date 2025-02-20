@@ -106,5 +106,5 @@ document.on("ready", function() {
 ## generate doc
 
 ```sh
-./node_modules/.bin/jsdoc2md --configure jsdoc.json src/utils.js >> documentation.md
+./node_modules/.bin/jsdoc2md src/utils.js > documentation.md
 ```
